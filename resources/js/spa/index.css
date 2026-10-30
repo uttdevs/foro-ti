@@ -1,0 +1,45 @@
+@import "tailwindcss";
+@import "./talleres.css";
+/* ---------- Banner del torneo ---------- */
+@keyframes flotar {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+
+@keyframes barrido {
+  0%   { transform: translateX(-120%) skewX(-20deg); }
+  60%, 100% { transform: translateX(450%) skewX(-20deg); }
+}
+
+@keyframes latido {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.7); }
+  50%      { box-shadow: 0 0 0 14px rgba(34, 211, 238, 0); }
+}
+
+.torneo__logo {
+  animation: flotar 3s ease-in-out infinite;
+}
+
+.torneo__brillo {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 30%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  pointer-events: none;
+  animation: barrido 5s ease-in-out infinite;
+}
+
+.torneo__boton {
+  animation: latido 2s infinite;
+}
+
+/* Respeta a quien desactiva las animaciones en su sistema */
+@media (prefers-reduced-motion: reduce) {
+  .torneo__logo,
+  .torneo__brillo,
+  .torneo__boton {
+    animation: none;
+  }
+}

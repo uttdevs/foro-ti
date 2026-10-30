@@ -1,0 +1,300 @@
+/* =========================================================
+   TALLERES · Foro TI 2026
+   ========================================================= */
+
+/* Fondo de la página de talleres (solo cuando existe #talleres) */
+body:has(#talleres) {
+  min-height: 100vh;
+  color: #fff;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(0, 229, 255, 0.3), transparent 32%),
+    radial-gradient(circle at 0% 100%, rgba(217, 70, 239, 0.4), transparent 38%),
+    #05060f;
+}
+
+/*  Título  */
+#titulo {
+  display: flex;
+  justify-content: center;
+  padding: 32px 16px 8px;
+}
+
+.talleres__h1 {
+  margin: 0;
+  text-align: center;
+}
+
+.titulo-fx {
+  position: relative;
+  display: inline-block;
+}
+
+.titulo-fx__img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: min(90vw, 520px);
+  height: auto;
+}
+
+/* Copia borrosa de la imagen detrás: crea el resplandor */
+.titulo-fx__glow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  filter: blur(18px) saturate(1.4);
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+/*  Cuadrícula de tarjetas  */
+#talleres {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 16px 56px;
+}
+
+/*  Tarjeta  */
+.taller {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px;
+  border: 1px solid rgba(34, 211, 238, 0.45);
+  border-radius: 16px;
+  background: linear-gradient(160deg, #0f2233 0%, #12102b 100%);
+  box-shadow: 0 0 18px rgba(34, 211, 238, 0.12);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.taller:hover {
+  transform: translateY(-6px);
+  border-color: rgba(217, 70, 239, 0.7);
+  box-shadow: 0 0 24px rgba(217, 70, 239, 0.3);
+}
+
+.taller--agotado {
+  opacity: 0.65;
+}
+
+.taller--agotado:hover {
+  transform: none;
+  border-color: rgba(34, 211, 238, 0.45);
+  box-shadow: 0 0 18px rgba(34, 211, 238, 0.12);
+}
+
+.taller--agotado .taller__media img {
+  filter: grayscale(1);
+}
+
+/*  Etiqueta de categoría  */
+.taller__tag {
+  align-self: flex-start;
+  padding: 4px 12px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.taller__tag--hardware  { color: #fb923c; background: rgba(251, 146, 60, 0.12); }
+.taller__tag--datos     { color: #22d3ee; background: rgba(34, 211, 238, 0.12); }
+.taller__tag--redes     { color: #60a5fa; background: rgba(96, 165, 250, 0.12); }
+.taller__tag--ia        { color: #e879f9; background: rgba(232, 121, 249, 0.12); }
+.taller__tag--seguridad { color: #f87171; background: rgba(248, 113, 113, 0.12); }
+.taller__tag--sistemas  { color: #4ade80; background: rgba(74, 222, 128, 0.12); }
+
+/*  Nombre  */
+.taller__nombre {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 800;
+  line-height: 1.3;
+  color: #fff;
+}
+
+/*  Maestro  */
+.taller__maestro {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.taller__avatar {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #22d3ee, #8b5cf6);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #05060f;
+}
+
+.taller__maestro-label {
+  display: block;
+  font-size: 0.7rem;
+  color: #94a3b8;
+}
+
+.taller__maestro-nombre {
+  display: block;
+  font-size: 0.9rem;
+  color: #e2e8f0;
+}
+
+/*  Descripción  */
+.taller__descripcion {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #cbd5e1;
+}
+
+/*  Imagen  */
+.taller__media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border: 1px solid rgba(34, 211, 238, 0.25);
+  border-radius: 12px;
+  background: #080b18;
+}
+
+.taller__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/*  Lugares disponibles  */
+.taller__lugares {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: auto;
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.taller__estado {
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.taller__estado--ok      { color: #4ade80; background: rgba(74, 222, 128, 0.15); }
+.taller__estado--ultimos { color: #fbbf24; background: rgba(251, 191, 36, 0.15); }
+.taller__estado--agotado { color: #f87171; background: rgba(248, 113, 113, 0.15); }
+
+/* Botón*/
+.taller__boton {
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #22d3ee, #8b5cf6);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #05060f;
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.taller__boton:hover:not(:disabled) {
+  transform: scale(1.03);
+  filter: brightness(1.1);
+}
+
+.taller__boton:focus-visible {
+  outline: 2px solid #e879f9;
+  outline-offset: 3px;
+}
+
+.taller__boton:disabled {
+  background: #334155;
+  color: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* Etiqueta de Desarrollo */
+.taller__tag--desarrollo { color: #facc15; background: rgba(250, 204, 21, 0.12); }
+
+/* Puesto y empresa del maestro */
+.taller__maestro-puesto,
+.taller__maestro-empresa {
+  display: block;
+  font-size: 0.75rem;
+  line-height: 1.35;
+  color: #94a3b8;
+}
+
+/* Alerta de pocos lugares */
+.talleres__alerta {
+  display: block;
+  width: fit-content;
+  max-width: 92vw;
+  margin: 8px auto 0;
+  padding: 8px 16px;
+  border: 1px solid rgba(251, 191, 36, 0.5);
+  border-radius: 999px;
+  background: rgba(251, 191, 36, 0.12);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-align: center;
+  color: #fbbf24;
+}
+
+/* Avisos emergentes */
+.aviso {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  z-index: 50;
+  max-width: min(92vw, 520px);
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+  transform: translateX(-50%);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+}
+.aviso--error { color: #fecaca; background: rgba(127, 29, 29, 0.95); border: 1px solid #f87171; }
+.aviso--ok    { color: #bbf7d0; background: rgba(20, 83, 45, 0.95);  border: 1px solid #4ade80; }
+
+/* Pantalla de registro completado */
+.exito {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 560px;
+  margin: 8vh auto 0;
+  padding: 32px 24px;
+  border: 2px solid #67e8f9;
+  border-radius: 16px;
+  background: linear-gradient(160deg, #0f2233 0%, #12102b 100%);
+  box-shadow: 0 0 24px rgba(34, 211, 238, 0.5);
+  text-align: center;
+}
+.exito p { margin: 0; color: #cbd5e1; }
+.exito__titulo { margin: 0; font-size: 1.8rem; font-weight: 900; color: #67e8f9; }
+.exito__taller { font-size: 1.2rem; font-weight: 800; color: #fff !important; }
+.exito__nota { font-size: 0.9rem; }
+.exito__boton { display: block; margin-top: 12px; text-align: center; text-decoration: none; }

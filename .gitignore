@@ -1,0 +1,79 @@
+# ==============================
+# Dependencias
+# ==============================
+/node_modules
+/vendor
+
+# ==============================
+# Build (generados por Vite)
+# ==============================
+/public/build
+/public/hot
+/public/fonts-manifest.dev.json
+
+# ==============================
+# Laravel storage & cache
+# ==============================
+/storage/*.key
+/storage/pail
+/storage/logs/*.log
+/bootstrap/cache/*.php
+
+# ==============================
+# Entorno y credenciales
+# ==============================
+.env
+.env.backup
+.env.production
+/auth.json
+
+# ==============================
+# Assets pesados (no pertenecen al repo)
+# ==============================
+/public/III Congreso
+
+# ==============================
+# Logs
+# ==============================
+*.log
+
+# ==============================
+# IDEs y editores
+# ==============================
+/.codex
+/.cursor/
+/.idea
+/.nova
+/.phpunit.cache
+/.vscode
+/.zed
+.phpactor.json
+_ide_helper.php
+
+# ==============================
+# Testing
+# ==============================
+.phpunit.result.cache
+/coverage
+
+# ==============================
+# OS
+# ==============================
+.DS_Store
+Thumbs.db
+
+# ==============================
+# Legacy / no usados
+# ==============================
+Homestead.json
+Homestead.yaml
+
+# ==============================
+# Docker (volúmenes locales)
+# ==============================
+/docker/mysql-data
+
+# ==============================
+# Archivo residual en la raíz
+# ==============================
+/laravel
