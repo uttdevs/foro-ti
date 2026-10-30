@@ -64,6 +64,8 @@ COPY docker/nginx.conf /etc/nginx/http.d/default.conf
 
 # Supervisor config (runs nginx + php-fpm)
 COPY docker/supervisord.conf /etc/supervisord.conf
+COPY docker/entrypoint.sh /usr/local/bin/foro-ti-entrypoint
+RUN chmod +x /usr/local/bin/foro-ti-entrypoint
 
 WORKDIR /var/www/html
 
@@ -75,6 +77,9 @@ COPY --from=frontend --chown=www-data:www-data /app/public/build public/build
 
 # Copy vendor from stage 2
 COPY --from=vendor --chown=www-data:www-data /app/vendor vendor
+
+# Ignore package metadata generated on the host; it may reference dev-only packages.
+RUN rm -f bootstrap/cache/*.php
 
 # Create required Laravel directories
 RUN mkdir -p storage/framework/{sessions,views,cache} \
@@ -92,4 +97,5 @@ RUN rm -rf node_modules tests \
 
 EXPOSE 80
 
+ENTRYPOINT ["/usr/local/bin/foro-ti-entrypoint"]
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]

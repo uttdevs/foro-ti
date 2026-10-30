@@ -31,10 +31,9 @@ storage/framework/cache/*
 .env.production
 .env.example
 
-# Docker files (no need inside image)
+# Orchestration files (not needed inside the image)
 docker-compose.yml
 Dockerfile
-docker/
 
 # Heavy/unnecessary assets
 public/III Congreso
