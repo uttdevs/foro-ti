@@ -1,0 +1,50 @@
+# Dependencies
+node_modules
+vendor
+
+# Build artifacts
+public/build
+public/hot
+
+# Dev/IDE files
+.git
+.gitignore
+.idea
+.vscode
+.cursor
+.zed
+.nova
+.codex
+.phpactor.json
+.phpunit.cache
+_ide_helper.php
+
+# Logs & temp
+storage/logs/*
+storage/framework/sessions/*
+storage/framework/views/*
+storage/framework/cache/*
+
+# Environment
+.env
+.env.backup
+.env.production
+.env.example
+
+# Docker files (no need inside image)
+docker-compose.yml
+Dockerfile
+docker/
+
+# Heavy/unnecessary assets
+public/III Congreso
+
+# Dev files
+tests
+phpunit.xml
+AGENTS.md
+CLAUDE.md
+
+# OS
+.DS_Store
+Thumbs.db
