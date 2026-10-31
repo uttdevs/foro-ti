@@ -78,8 +78,8 @@ COPY --from=frontend --chown=www-data:www-data /app/public/build public/build
 # Copy vendor from stage 2
 COPY --from=vendor --chown=www-data:www-data /app/vendor vendor
 
-# Ignore package metadata generated on the host; it may reference dev-only packages.
-RUN rm -f bootstrap/cache/*.php
+# Rebuild the package manifest after the application code is available.
+RUN php artisan package:discover --ansi
 
 # Create required Laravel directories
 RUN mkdir -p storage/framework/{sessions,views,cache} \

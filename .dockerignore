@@ -33,7 +33,6 @@ storage/framework/cache/*
 
 # Orchestration files (not needed inside the image)
 docker-compose.yml
-Dockerfile
 
 # Heavy/unnecessary assets
 public/III Congreso

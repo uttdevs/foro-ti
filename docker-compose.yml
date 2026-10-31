@@ -1,8 +1,8 @@
 # ===========================================================
-# Foro TI - Docker Compose (dev local + base para producción)
+# Foro TI - Docker Compose (desarrollo con base de datos externa)
 # ===========================================================
 # Uso:
-#   docker compose up -d          → levanta todo
+#   docker compose up -d          → levanta la aplicación
 #   docker compose logs -f app    → ver logs de la app
 #   docker compose exec app php artisan migrate → migraciones
 #   docker compose down           → apagar todo
@@ -20,58 +20,18 @@ services:
     environment:
       - APP_ENV=local
       - APP_DEBUG=true
-      - DB_HOST=db
-      - DB_PORT=3306
+      - DB_HOST=host.docker.internal
     volumes:
       # En desarrollo: monta el código fuente para hot-reload
       # Comenta estas líneas para producción
       - .:/var/www/html
       - /var/www/html/vendor       # excluir vendor del mount
       - /var/www/html/node_modules # excluir node_modules del mount
-    depends_on:
-      db:
-        condition: service_healthy
+      - ./docker/php-dev.ini:/usr/local/etc/php/conf.d/99-dev.ini:ro
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     networks:
       - foro-net
-
-  db:
-    image: mariadb:10.11
-    container_name: foro-ti-db
-    restart: unless-stopped
-    environment:
-      MARIADB_ROOT_PASSWORD: ${DB_PASSWORD:-secret}
-      MARIADB_DATABASE: ${DB_DATABASE:-foro_ti}
-    ports:
-      - "3307:3306"  # 3307 en host para no chocar con MariaDB local/XAMPP
-    volumes:
-      - db-data:/var/lib/mysql
-      # Si tienes un dump SQL, colócalo aquí para auto-importar al crear la BD:
-      # - ./dump.sql:/docker-entrypoint-initdb.d/dump.sql
-    healthcheck:
-      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    networks:
-      - foro-net
-
-  # phpMyAdmin — accesible en http://localhost:8080
-  phpmyadmin:
-    image: phpmyadmin:latest
-    container_name: foro-ti-pma
-    restart: unless-stopped
-    ports:
-      - "8080:80"
-    environment:
-      PMA_HOST: db
-      PMA_PORT: 3306
-    depends_on:
-      - db
-    networks:
-      - foro-net
-
-volumes:
-  db-data:
 
 networks:
   foro-net:

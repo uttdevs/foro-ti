@@ -8,7 +8,7 @@
 
 ## Environment
 - Development runs via Docker Compose (`docker compose up -d`)
-- App: port 8000 | phpMyAdmin: port 8080 | MariaDB: port 3307
+- App: port 8000 | database: external service (XAMPP locally or Dokploy in production)
 
 ## Key Paths
 - React SPA entry: `resources/js/spa/main.jsx`
