@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+c8bckckimport { useEffect, useState } from "react"
 import { Link, useLocation } from "react-router-dom"
 import Img from "./Img"
 import "./inicio.css"
@@ -365,7 +365,7 @@ function Inicio() {
               ))}
 
               <a
-                href="#registro"
+                href="https://torneo.codersti.cloud"
                 className="torneo__boton rounded-full bg-cyan-400 px-5 py-1.5 text-sm font-black text-slate-950 transition hover:scale-105 hover:bg-yellow-300"
               >
                 ¡Ver Torneo!
