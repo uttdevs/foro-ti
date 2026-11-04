@@ -1,22 +1,22 @@
 import { useEffect, useState } from "react"
 import { Link, useLocation } from "react-router-dom"
 import Img from "./Img"
+import "./inicio.css"
 
 /* Datos del evento */
-
 const galeria = [
-  { src: "/galeria-1.png", alt: "Joven programando", fallback: "💻", color: "from-indigo-950 to-purple-900" },
-  { src: "/galeria-2.png", alt: "Dos personas jugando videojuegos", fallback: "🎮", color: "from-fuchsia-900 to-violet-800" },
-  { src: "/galeria-3.png", alt: "Estudiante con laptop", fallback: "🤖", color: "from-blue-950 to-fuchsia-950" },
-  { src: "/galeria-4.png", alt: "Comunidad tecnológica", fallback: "🧠", color: "from-purple-950 to-indigo-900" },
-  { src: "/galeria-5.png", alt: "Torneo de videojuegos", fallback: "🏆", color: "from-cyan-950 to-violet-900" },
+  { src: "/galeria-1.png", alt: "Foto de la galería 1", fallback: "💻", color: "from-indigo-950 to-purple-900" },
+  { src: "/galeria-2.png", alt: "Foto de la galería 2", fallback: "🎮", color: "from-fuchsia-900 to-violet-800" },
+  { src: "/galeria-3.png", alt: "Foto de la galería 3", fallback: "🤖", color: "from-blue-950 to-fuchsia-950" },
+  { src: "/galeria-4.png", alt: "Foto de la galería 4", fallback: "🧠", color: "from-purple-950 to-indigo-900" },
+  { src: "/galeria-5.png", alt: "Foto de la galería 5", fallback: "🏆", color: "from-cyan-950 to-violet-900" },
 ]
 
 /* Los enlaces que empiezan con "/" cambian de página; los que empiezan con "#" bajan a una sección */
 const informacion = [
-  { title: "Temáticas", link: "#tematicas", src: "/icono-ia.png", fallback: "🧠", border: "border-cyan-400", glow: "shadow-[0_0_14px_#22d3ee66]" },
-  { title: "Mapa del Evento", link: "#mapa", src: "/icono-mapa.png", fallback: "📍", border: "border-cyan-300", glow: "shadow-[0_0_14px_#67e8f966]" },
-  { title: "Agenda del Evento", link: "/agenda", src: "/icono-agenda.png", fallback: "📅", border: "border-violet-400", glow: "shadow-[0_0_14px_#a78bfa66]" },
+  { title: "Temáticas", link: "#tematicas", src: "/icono-ia.png", border: "border-violet-400", glow: "shadow-[0_0_14px_#22d3ee66]" },
+  { title: "Mapa del Evento", link: "#mapa", src: "/icono-mapa.png", border: "border-cyan-300", glow: "shadow-[0_0_14px_#67e8f966]" },
+  { title: "Agenda del Día", link: "/agenda", src: "/icono-agenda.png", border: "border-violet-400", glow: "shadow-[0_0_14px_#a78bfa66]" },
 ]
 
 const tematicas = [
@@ -26,15 +26,34 @@ const tematicas = [
   { icon: "🎮", title: "Videojuegos y cultura digital", description: "Comparte tu interés por los videojuegos, la creatividad y las comunidades digitales." },
 ]
 
+const conferencista = {
+  nombre: "Dr. Eduardo Berra Villaseñor",
+  foto: "/ponente-eduardo.png",
+  iniciales: "EB",
+  tema: "IoT Cognitivo: Integración de Inteligencia Artificial Generativa en Sistemas Embebidos Inteligentes",
+  fecha: "Jueves 26 de noviembre · 09:30 – 10:30",
+}
+
+const juegos = []
+
+const patrocinadores = [
+  { nombre: "Patrocinador 1", src: "/patrocinador-1.png" },
+  { nombre: "Patrocinador 2", src: "/patrocinador-2.png" },
+  { nombre: "Patrocinador 3", src: "/patrocinador-3.png" },
+  { nombre: "Patrocinador 4", src: "/patrocinador-4.png" },
+  { nombre: "Patrocinador 5", src: "/patrocinador-5.png" },
+  { nombre: "Patrocinador 6", src: "/patrocinador-6.png" },
+]
+
 /* Forma con esquinas cortadas (panel del objetivo) */
 const cortado =
   "[clip-path:polygon(3%_0,97%_0,100%_22%,100%_78%,97%_100%,3%_100%,0_78%,0_22%)]"
-  const juegos = [
 
-]
+/* Forma con esquinas cortadas de 16 px (marcos de ponentes) */
+const esquinas =
+  "[clip-path:polygon(0_16px,16px_0,calc(100%_-_16px)_0,100%_16px,100%_calc(100%_-_16px),calc(100%_-_16px)_100%,16px_100%,0_calc(100%_-_16px))]"
 
 /* COMPONENTES PEQUEÑOS */
-
 function Galeria() {
   const [actual, setActual] = useState(0)
 
@@ -94,37 +113,88 @@ function Galeria() {
   )
 }
 
-function Registro() {
-  const [nombre, setNombre] = useState("")
-  const [correo, setCorreo] = useState("")
-  const [enviado, setEnviado] = useState(false)
+function Conferencista({ c }) {
+  return (
+    <div className={`bg-gradient-to-br from-cyan-300 via-violet-500 to-fuchsia-500 p-[2px] ${esquinas}`}>
+      <div className={`relative overflow-hidden bg-[#0b1626] px-5 py-8 sm:px-10 sm:py-10 ${esquinas}`}>
+        {/* Luces de fondo */}
+        <div aria-hidden="true" className="pointer-events-none absolute -left-10 -top-10 h-56 w-56 rounded-full bg-cyan-400/25 blur-3xl" />
+        <div aria-hidden="true" className="pointer-events-none absolute -bottom-10 -right-10 h-56 w-56 rounded-full bg-fuchsia-500/25 blur-3xl" />
 
-  const manejarEnvio = (e) => {
-    e.preventDefault()
-    console.log({ nombre, correo }) // Aquí se conectaría un servicio real (Google Forms, Formspree, etc.)
-    setEnviado(true)
-  }
+        <div className="relative flex flex-col items-center gap-6 text-center sm:flex-row sm:gap-10 sm:text-left">
+          {/* Foto con resplandor */}
+          <div className="relative h-48 w-48 shrink-0 sm:h-60 sm:w-60">
+            <div aria-hidden="true" className="absolute -inset-3 rounded-full bg-gradient-to-br from-cyan-400 to-fuchsia-500 opacity-70 blur-xl" />
+            <div className="relative h-full w-full rounded-full bg-gradient-to-br from-cyan-300 to-fuchsia-500 p-[3px]">
+              <div className="h-full w-full overflow-hidden rounded-full bg-[#0b2233]">
+                <Img
+                  src={c.foto}
+                  alt={`Foto de ${c.nombre}`}
+                  fallback={c.iniciales}
+                  fallbackClass="flex h-full w-full items-center justify-center bg-gradient-to-br from-cyan-900 to-violet-900 text-6xl font-black text-cyan-100"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
 
-  if (enviado) {
-    return <p className="mt-6 font-bold text-cyan-300">¡Gracias, {nombre}! Tu registro fue recibido.</p>
-  }
+          {/* Texto */}
+          <div className="flex-1">
+            <span className="inline-block rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 px-4 py-1 text-xs font-black uppercase tracking-wide text-slate-950 sm:text-sm">
+              Conferencia magistral
+            </span>
+            <h3 className="mt-3 text-3xl font-black leading-tight sm:text-5xl">{c.nombre}</h3>
+            <p className="mt-3 text-sm leading-6 text-cyan-100 sm:text-lg sm:leading-7">{c.tema}</p>
+            <p className="mt-4 inline-block rounded-lg border border-fuchsia-400/60 bg-fuchsia-500/10 px-3 py-1 text-xs font-bold text-fuchsia-200 sm:text-sm">
+              📅 {c.fecha}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
 
-  const campo =
-    "w-full rounded-lg border border-cyan-400/50 bg-[#0c2032] px-4 py-3 text-white outline-none focus:border-fuchsia-400"
+function Patrocinadores() {
+  /* Repite la lista hasta tener al menos 8 logos, para que la banda nunca quede vacía */
+  const base = Array.from({ length: Math.ceil(8 / patrocinadores.length) }).flatMap(() => patrocinadores)
 
   return (
-    <form onSubmit={manejarEnvio} className="mx-auto mt-6 max-w-md space-y-4">
-      <input type="text" required value={nombre} onChange={(e) => setNombre(e.target.value)} placeholder="Nombre completo" className={campo} />
-      <input type="email" required value={correo} onChange={(e) => setCorreo(e.target.value)} placeholder="Correo electrónico" className={campo} />
-      <button type="submit" className="w-full rounded-lg bg-cyan-400 px-6 py-3 font-black text-slate-950 transition hover:bg-fuchsia-400">
-        Registrarme
-      </button>
-    </form>
+    <section className="patrocinadores mx-auto mt-12 max-w-4xl">
+      <h2 className="mb-5 text-center text-xl font-extrabold sm:text-2xl">
+        <span className="bg-gradient-to-r from-cyan-300 via-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
+          Nuestros patrocinadores
+        </span>
+      </h2>
+
+      <div className="overflow-hidden rounded-2xl border border-cyan-400/30 bg-white/5 py-5 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+        {/* La lista va dos veces: al terminar la primera mitad, el ciclo vuelve a empezar sin saltos */}
+        <div
+          className="patrocinadores__pista flex w-max"
+          style={{ animationDuration: `${base.length * 4}s` }}
+        >
+          {[...base, ...base].map((p, i) => (
+            <div
+              key={`${p.nombre}-${i}`}
+              aria-hidden={i >= base.length ? "true" : undefined}
+              className="mr-6 flex h-16 w-36 shrink-0 items-center justify-center rounded-xl bg-white/95 px-4 shadow-lg sm:h-20 sm:w-44"
+            >
+              <Img
+                src={p.src}
+                alt={i < base.length ? p.nombre : ""}
+                fallback={p.nombre}
+                fallbackClass="text-center text-xs font-bold text-slate-700"
+                className="max-h-full max-w-full object-contain"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   )
 }
 
 /* PÁGINA */
-
 function Inicio() {
   const { hash } = useLocation()
 
@@ -145,43 +215,34 @@ function Inicio() {
           "radial-gradient(circle at 100% 0%, rgba(0,229,255,.35), transparent 32%), radial-gradient(circle at 0% 100%, rgba(217,70,239,.45), transparent 38%), #05060f",
       }}
     >
-
-      
       {/* Encabezado */}
-<header className="mx-auto flex w-full max-w-4xl items-center justify-between gap-3 px-3 py-4 sm:px-6">
-  
-  <a href="#inicio" className="w-[35%] shrink-0 sm:w-auto">
-    <Img
-      src="/logo-foroti.png"
-      alt="Logo Foro TI 2026"
-      fallback="FORO TI 2026"
-      fallbackClass="text-2xl font-black text-cyan-300"
-      className="h-12 w-full object-contain object-left sm:h-28 sm:w-auto"
-    />
-  </a>
+      <header className="mx-auto flex max-w-4xl items-center justify-between gap-3 py-4">
+        <a href="#inicio" className="shrink-0">
+          <Img
+            src="/logo-foroti.png"
+            alt="Logo Foro TI 2026"
+            fallbackClass="text-2xl font-black text-cyan-300"
+            className="h-20 w-auto object-contain sm:h-28"
+          />
+        </a>
 
-  <div className="flex w-[60%] flex-row items-center justify-end gap-1 sm:w-auto sm:gap-6">
-    {/* CAMBIO SOLO PARA PC: Subimos de sm:h-14 a sm:h-20 */}
-    <Img
-      src="/logo-ia.png"
-      alt="Instituto de Investigación en Inteligencia Artificial"
-      fallback="IIA"
-      fallbackClass="text-sm font-bold text-slate-300"
-      className="h-8 w-auto object-contain sm:h-20"
-    />
-    <Img
-      src="/logo-segundo.png"
-      alt="Ingeniería en Tecnologías de la Información e Innovación Digital"
-      fallback="ITIID"
-      fallbackClass="text-sm font-bold text-slate-300"
-      className="h-8 w-auto object-contain sm:h-20"
-    />
-  </div>
-</header>
+        <div className="flex items-center gap-3 sm:gap-6">
+          <Img
+            src="/logo-ia.png"
+            alt="Instituto de Investigación en Inteligencia Artificial"
+            fallbackClass="text-sm font-bold text-slate-300"
+            className="h-10 w-auto object-contain sm:h-14"
+          />
+          <Img
+            src="/logo-segundo.png"
+            alt="Ingeniería en Tecnologías de la Información e Innovación Digital"
+            fallbackClass="text-sm font-bold text-slate-300"
+            className="h-10 w-auto object-contain sm:h-14"
+          />
+        </div>
+      </header>
 
-
-
-
+      {/* Banner principal */}
       <section
         id="inicio"
         className="mx-auto mt-2 flex min-h-56 max-w-4xl flex-col items-center justify-center rounded-2xl border-2 border-cyan-300 px-5 py-10 text-center shadow-[0_0_24px_#22d3ee88] sm:min-h-72"
@@ -196,6 +257,7 @@ function Inicio() {
           <span className="bg-gradient-to-r from-fuchsia-400 via-violet-400 to-cyan-300 bg-clip-text text-transparent">
             <Img
               src="/Group 4.png"
+              alt="Foro TI 2026"
               fallbackClass="text-2xl font-black text-cyan-300"
               className="h-20 w-auto object-contain sm:h-28"
             />
@@ -204,12 +266,12 @@ function Inicio() {
 
         <p className="mt-3 text-base font-semibold sm:text-xl">Datos, IA e Innovación Digital</p>
 
-       <a
-  href="/registro"
-  className="mt-5 rounded-full bg-gradient-to-r from-sky-400 to-blue-500 px-6 py-2 text-xs font-bold uppercase tracking-wide shadow-lg transition hover:scale-105 sm:text-sm"
->
-  Regístrate ahora
-</a>
+        <a
+          href="/registro"
+          className="mt-5 rounded-full bg-gradient-to-r from-sky-400 to-blue-500 px-6 py-2 text-xs font-bold uppercase tracking-wide shadow-lg transition hover:scale-105 sm:text-sm"
+        >
+          Regístrate ahora
+        </a>
       </section>
 
       {/* Objetivo general */}
@@ -224,6 +286,16 @@ function Inicio() {
             </p>
           </div>
         </div>
+      </section>
+
+      {/* Ponentes */}
+      <section id="ponentes" className="mx-auto mt-10 max-w-4xl scroll-mt-6">
+        <h2 className="mb-6 text-center text-2xl font-black sm:text-3xl">
+          <span className="bg-gradient-to-r from-cyan-300 via-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
+            Nuestro ponente
+          </span>
+        </h2>
+        <Conferencista c={conferencista} />
       </section>
 
       {/* Galería */}
@@ -250,7 +322,6 @@ function Inicio() {
                   <Img
                     src={item.src}
                     alt={item.title}
-                    fallback={item.fallback}
                     className="h-full w-full object-contain transition group-hover:scale-110"
                     fallbackClass="text-5xl"
                   />
@@ -262,49 +333,47 @@ function Inicio() {
       </section>
 
       {/* Torneo de videojuegos */}
-<section className="relative mx-auto mt-6 max-w-4xl overflow-hidden rounded-2xl border-2 border-fuchsia-300 bg-gradient-to-r from-cyan-800 via-violet-700 to-fuchsia-600 p-3 shadow-[0_0_24px_#d946ef88] sm:p-4">
-  <span aria-hidden="true" className="torneo__brillo" />
+      <section className="relative mx-auto mt-6 max-w-4xl overflow-hidden rounded-2xl border-2 border-fuchsia-300 bg-gradient-to-r from-cyan-800 via-violet-700 to-fuchsia-600 p-3 shadow-[0_0_24px_#d946ef88] sm:p-4">
+        <span aria-hidden="true" className="torneo__brillo" />
 
-  <div className="relative flex flex-col items-center gap-3 sm:flex-row sm:gap-6">
-    <Img
-      src="/Duo.png"
-      alt="FIFA x KOF"
-      fallbackClass="text-5xl"
-      className="torneo__logo h-16 w-auto shrink-0 object-contain drop-shadow-[0_0_14px_#fde047aa] sm:h-24"
-    />
+        <div className="relative flex flex-col items-center gap-3 sm:flex-row sm:gap-6">
+          <Img
+            src="/Duo.png"
+            alt="FIFA x KOF"
+            fallbackClass="text-5xl"
+            className="torneo__logo h-16 w-auto shrink-0 object-contain drop-shadow-[0_0_14px_#fde047aa] sm:h-24"
+          />
 
-    <div className="flex-1 text-center">
-      <span className="inline-block rounded-full bg-yellow-300 px-3 py-0.5 text-[10px] font-black uppercase tracking-wide text-slate-950 sm:text-xs">
-        🏆 Premios por equipo
-      </span>
+          <div className="flex-1 text-center">
+            <span className="inline-block rounded-full bg-yellow-300 px-3 py-0.5 text-[10px] font-black uppercase tracking-wide text-slate-950 sm:text-xs">
+              🏆 Premios por equipo
+            </span>
 
-      <h2 className="mt-1.5 text-xl font-black leading-tight sm:text-2xl">
-        Torneo de videojuegos
-      </h2>
+            <h2 className="mt-1.5 text-xl font-black leading-tight sm:text-2xl">Torneo de videojuegos</h2>
 
-      <div className="mt-2 flex flex-wrap items-center justify-center gap-2">
-        {juegos.map((j) => (
-          <div key={j.name} className="flex h-8 items-center rounded-lg bg-white/90 px-3 sm:h-9">
-            <Img
-              src={j.src}
-              alt={j.name}
-              fallback={j.name}
-              fallbackClass="text-sm font-black italic text-slate-900"
-              className="h-4 w-auto object-contain sm:h-5"
-            />
+            <div className="mt-2 flex flex-wrap items-center justify-center gap-2">
+              {juegos.map((j) => (
+                <div key={j.name} className="flex h-8 items-center rounded-lg bg-white/90 px-3 sm:h-9">
+                  <Img
+                    src={j.src}
+                    alt={j.name}
+                    fallback={j.name}
+                    fallbackClass="text-sm font-black italic text-slate-900"
+                    className="h-4 w-auto object-contain sm:h-5"
+                  />
+                </div>
+              ))}
+
+              <a
+                href="#registro"
+                className="torneo__boton rounded-full bg-cyan-400 px-5 py-1.5 text-sm font-black text-slate-950 transition hover:scale-105 hover:bg-yellow-300"
+              >
+                ¡Ver Torneo!
+              </a>
+            </div>
           </div>
-        ))}
-
-        <a
-          href="#registro"
-          className="torneo__boton rounded-full bg-cyan-400 px-5 py-1.5 text-sm font-black text-slate-950 transition hover:scale-105 hover:bg-yellow-300"
-        >
-          ¡Ver Torneo!
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
+        </div>
+      </section>
 
       {/* Temáticas */}
       <section id="tematicas" className="mx-auto mt-12 max-w-4xl scroll-mt-6">
@@ -359,13 +428,8 @@ function Inicio() {
         </div>
       </section>
 
-      {/* Registro (desactivado por ahora)
-      <section id="registro" className="mx-auto mt-12 max-w-3xl scroll-mt-6 pb-10 text-center">
-        <h2 className="text-2xl font-black text-cyan-300">¡Forma parte del Foro TI 2026!</h2>
-        <p className="mt-3 text-slate-300">Descubre, aprende y comparte tus ideas con la comunidad tecnológica.</p>
-        <Registro />
-      </section>
-      */}
+      {/* Carrusel de patrocinadores */}
+      <Patrocinadores />
 
       {/* Pie de página */}
       <footer className="mx-auto mt-12 max-w-4xl border-t border-cyan-500/40 py-6 text-center text-sm text-slate-400">
@@ -392,10 +456,19 @@ function Inicio() {
             className="h-12 w-auto object-contain sm:h-28"
           />
         </div>
-         <p className="mt-4">Tel: +52-249-422-3303 | Información: +52-222-537-8503 | <a href="https://www.facebook.com/share/1Gye3MG73h/" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-fuchsia-400">Facebook: TI</a></p>
-        <p className="mt-4">© 2026 Foro TI · Datos, IA e Innovación Digital</p>
 
-        
+        <p className="mt-4">
+          Tel: +52-249-422-3303 | Información: +52-222-537-8503 |{" "}
+          <a
+            href="https://www.facebook.com/share/1Gye3MG73h/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-cyan-400 hover:text-fuchsia-400"
+          >
+            Facebook: TI
+          </a>
+        </p>
+        <p className="mt-4">© 2026 Foro TI · Datos, IA e Innovación Digital</p>
       </footer>
     </main>
   )

@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "./talleres.css";
+
 /* ---------- Banner del torneo ---------- */
 @keyframes flotar {
   0%, 100% { transform: translateY(0); }
@@ -41,5 +42,28 @@
   .torneo__brillo,
   .torneo__boton {
     animation: none;
+  }
+}
+
+/* Carrusel de patrocinadores */
+@keyframes desplazar {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.patrocinadores__pista {
+  animation: desplazar 30s linear infinite;
+}
+
+.patrocinadores:hover .patrocinadores__pista {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .patrocinadores__pista {
+    animation: none;
+  }
+  .patrocinadores > div {
+    overflow-x: auto;
   }
 }

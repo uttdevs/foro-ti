@@ -58,6 +58,12 @@ const MAESTROS = {
     empresa: "Sayux soluciones",
     puesto: "Technical Project Manager",
   },
+  gustavo: {
+    nombre: "Gustavo Andrade Angel",
+    iniciales: "GA",
+    empresa: "FinanSys",
+    puesto: "Desarrollador de software  ",
+  },
 }
 
 /* Talleres
@@ -118,6 +124,13 @@ const talleres = [
     categoria: "Datos", tipo: "datos", maestro: "victor",
     imagen: "/img/datos-nube.svg",
     descripcion: "Explora las aplicaciones de la inteligencia artificial. Aprende a utilizar herramientas inteligentes para generar contenido, resolver problemas y automatizar tareas.",
+  },
+  {
+    clave: "modelado-3d",
+    nombre: "Modelado e impresion 3D",
+    categoria: "Hardware", tipo: "hardware", maestro: "gustavo",
+    imagen: "/img/modelado-3d.svg",
+    descripcion: "Aprende a modelar y imprimir objetos en 3D. Utiliza software de diseño y máquinas de impresión para crear prototipos y productos personalizados.",
   },
 ]
 

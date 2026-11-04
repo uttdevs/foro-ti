@@ -18,7 +18,9 @@ Route::get('/talleres/datos', [TallerController::class, 'lista'])->name('tallere
 Route::post('/talleres/inscribir', [TallerController::class, 'inscribir'])->name('talleres.inscribir');
 // Login admin
 Route::get('/admin/login', [AuthController::class, 'showLogin'])->name('login');
-Route::post('/admin/login', [AuthController::class, 'login'])->name('login.post');
+Route::post('/admin/login', [AuthController::class, 'login'])
+    ->middleware('throttle:5,1')
+    ->name('login.post');
 
 // Panel admin (protegido)
 Route::middleware('auth')->prefix('admin')->group(function () {

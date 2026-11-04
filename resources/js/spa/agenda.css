@@ -1,7 +1,6 @@
 /* =========================================================
    AGENDA · Foro TI 2026
    ========================================================= */
-
 .agenda-page {
   min-height: 100vh;
   padding: 20px 16px 48px;
@@ -12,7 +11,7 @@
     #05060f;
 }
 
-/*  Navegación superior  */
+/* Navegación superior */
 .agenda-nav {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -93,7 +92,7 @@
   align-items: start; /* cada columna toma su propia altura */
 }
 
-/*  Columna de un día */
+/* Columna de un día */
 .dia {
   padding: 18px;
   border: 2px solid;
@@ -238,7 +237,7 @@
   color: #cbd5e1;
 }
 
-/*  Enlace para volver  */
+/* Enlace para volver */
 .agenda-volver {
   display: block;
   width: fit-content;
@@ -252,7 +251,7 @@
   color: #e879f9;
 }
 
-/* Pantallas medianas y grandes  */
+/* Pantallas medianas y grandes */
 @media (min-width: 640px) {
   .agenda-nav__item { font-size: 1rem; }
   .agenda-nav__icono { width: 72px; height: 72px; }
@@ -263,4 +262,63 @@
 
 @media (min-width: 768px) {
   .agenda-dias { grid-template-columns: 1fr 1fr; }
+}
+
+/* Descripción larga */
+.dia__descripcion {
+  margin: 8px 0 0;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: #cbd5e1;
+}
+
+.dia__descripcion--corta {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.dia__vermas {
+  margin-top: 4px;
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #67e8f9;
+  cursor: pointer;
+}
+
+.dia__vermas:hover {
+  color: #e879f9;
+  text-decoration: underline;
+}
+
+.dia__vermas:focus-visible {
+  outline: 2px solid #e879f9;
+  outline-offset: 2px;
+}
+
+/* Lista de ponentes */
+.dia__ponentes {
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dia__ponentes li {
+  position: relative;
+  padding-left: 14px;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: #cbd5e1;
+}
+
+.dia__ponentes li::before {
+  content: "•";
+  position: absolute;
+  left: 2px;
+  color: #67e8f9;
 }

@@ -14,7 +14,10 @@
                value="{{ old($campo, $asistente->$campo) }}" required>
     @endforeach
 
-    <input class="{{ $in }}" type="number" name="edad" placeholder="Edad" value="{{ old('edad', $asistente->edad) }}" required>
+    <input class="{{ $in }}" type="text" name="edad" placeholder="Edad (2 dígitos)"
+           maxlength="2" pattern="(1[5-9]|[2-9]\d)" title="Escribe una edad de 15 a 99" inputmode="numeric"
+           oninput="this.value=this.value.replace(/\D/g,'')"
+           value="{{ old('edad', $asistente->edad) }}" required>
 
     <input class="{{ $in }}" type="text" name="matricula" placeholder="Matrícula (8 números)"
            maxlength="8" pattern="\d{8}" inputmode="numeric" oninput="this.value=this.value.replace(/\D/g,'')"

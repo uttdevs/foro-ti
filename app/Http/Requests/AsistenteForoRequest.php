@@ -28,7 +28,7 @@ class AsistenteForoRequest extends FormRequest
             'nombre'           => ['required', 'string', 'max:50'],
             'apellido_paterno' => ['required', 'string', 'max:50'],
             'apellido_materno' => ['required', 'string', 'max:50'],
-            'edad'             => ['required', 'integer', 'min:15', 'max:99'],
+            'edad'             => ['required', 'integer', 'digits:2', 'min:15', 'max:99'],
             'matricula'        => ['required', 'digits:8', Rule::unique('asistentes_foro', 'matricula')->ignore($asistente)],
             'carrera_id'       => ['required', 'exists:carreras,id'],
             'cuatrimestre'     => ['required', Rule::in([1, 4, 7, 10])],
@@ -57,6 +57,9 @@ class AsistenteForoRequest extends FormRequest
             'carrera_id.exists' => 'Selecciona una carrera válida.',
             'taller_id.exists'  => 'Selecciona un taller válido.',
             'edad.integer'      => 'La edad debe ser un número.',
+            'edad.digits'       => 'La edad debe tener exactamente 2 dígitos.',
+            'edad.min'          => 'La edad mínima es de 15 años.',
+            'edad.max'          => 'La edad máxima permitida es 99 años.',
         ];
     }
 }

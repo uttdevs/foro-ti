@@ -10,9 +10,31 @@ class AdminSeeder extends Seeder
 {
     public function run(): void
     {
+        $correo = env('ADMIN_EMAIL');
+        $clave = env('ADMIN_PASSWORD');
+
+        $isInteractive = $this->command ? $this->command->getOutput()->isInteractive() : false;
+
+        if ((!$correo || !$clave) && $isInteractive) {
+            $correo = $this->command->ask('Correo del administrador');
+            $clave  = $this->command->secret('Contraseña del administrador (mínimo 10 caracteres)');
+
+            if (! $correo || strlen((string) $clave) < 10) {
+                $this->command->error('Correo o contraseña no válidos. No se creó el administrador.');
+                return;
+            }
+        }
+
+        $correo = $correo ?: 'admin@foroti.com';
+        $clave  = $clave ?: 'CambiaEstaClave123';
+
         User::updateOrCreate(
-            ['email' => 'admin@foroti.com'],
-            ['name' => 'Administrador', 'password' => Hash::make('CambiaEstaClave123')]
+            ['email' => $correo],
+            ['name' => 'Administrador', 'password' => Hash::make($clave)]
         );
+
+        if ($this->command) {
+            $this->command->info("Administrador listo: {$correo}");
+        }
     }
 }

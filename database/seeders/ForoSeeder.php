@@ -10,28 +10,33 @@ class ForoSeeder extends Seeder
 {
     public function run(): void
     {
-        // Carreras típicas de una universidad politécnica
         $carreras = [
-            'Ingeniería en Tecnologías de la Información',
-            'Ingeniería en Desarrollo de Software',
-            'Ingeniería en Redes y Telecomunicaciones',
-            'Ingeniería en Sistemas Computacionales',
-            'Ingeniería en Animación y Efectos Visuales',
-            'Licenciatura en Administración',
+            'Ingeniería en Mantenimiento Industrial',
+            'Ingeniería en Mecatrónica',
+            'Ingeniería en Alimentos',
+            'Ingeniería en Agricultura Sustentable y Protegida',
             'Ingeniería Industrial',
+            'Ingeniería en Tecnologías de la Información e Innovación Digital',
+            'Licenciatura en Negocios y Mercadotecnia',
+            'Licenciatura en Contaduría',
+            'Licenciatura en Administración',
+            'Ingeniería en Datos e Inteligencia Artificial',
         ];
 
         foreach ($carreras as $nombre) {
             Carrera::firstOrCreate(['nombre' => $nombre]);
         }
 
-        // Talleres de ejemplo
         $talleres = [
-            ['clave' => 'T01', 'nombre' => 'Introducción a la IA Generativa',        'cupo' => 30],
-            ['clave' => 'T02', 'nombre' => 'Ciberseguridad para Principiantes',       'cupo' => 25],
-            ['clave' => 'T03', 'nombre' => 'Desarrollo Web con Laravel y React',      'cupo' => 30],
-            ['clave' => 'T04', 'nombre' => 'Cloud Computing con AWS',                 'cupo' => 20],
-            ['clave' => 'T05', 'nombre' => 'Desarrollo de Apps Móviles con Flutter',  'cupo' => 25],
+            ['clave' => 'analitica-predictiva', 'nombre' => 'Next-Gen Data: Analítica Predictiva y Machine Learning Cloud', 'cupo' => 20],
+            ['clave' => 'laptops',              'nombre' => 'Mantenimiento y reparación de Laptops',                         'cupo' => 20],
+            ['clave' => 'base-datos',           'nombre' => 'Bases de Datos en Entornos Empresariales',                     'cupo' => 20],
+            ['clave' => 'nube-local',           'nombre' => 'Creación y Gestión de Nube Local',                              'cupo' => 20],
+            ['clave' => 'chatbots',             'nombre' => 'Creación de Chatbots y asistentes virtuales',                  'cupo' => 20],
+            ['clave' => 'spring-boot',          'nombre' => 'Creación de Microservicios Spring Boot',                        'cupo' => 20],
+            ['clave' => 'mikrotik',             'nombre' => 'Despliegue de redes MikroTik con apoyo de IA',                 'cupo' => 20],
+            ['clave' => 'ia',                   'nombre' => 'Inteligencia Artificial (IA)',                                 'cupo' => 20],
+            ['clave' => 'modelado-3d',          'nombre' => 'Modelado e impresion 3D',                                      'cupo' => 20],
         ];
 
         foreach ($talleres as $taller) {

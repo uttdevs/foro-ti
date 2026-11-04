@@ -46,7 +46,10 @@
         <input class="{{ $campo }}" type="text" name="nombre" placeholder="Nombre" value="{{ old('nombre') }}" required>
         <input class="{{ $campo }}" type="text" name="apellido_paterno" placeholder="Apellido paterno" value="{{ old('apellido_paterno') }}" required>
         <input class="{{ $campo }}" type="text" name="apellido_materno" placeholder="Apellido materno" value="{{ old('apellido_materno') }}" required>
-        <input class="{{ $campo }}" type="number" name="edad" placeholder="Edad" min="15" max="99" value="{{ old('edad') }}" required>
+        <input class="{{ $campo }}" type="text" name="edad" placeholder="Edad (2 dígitos)"
+               maxlength="2" pattern="(1[5-9]|[2-9]\d)" title="Escribe una edad de 15 a 99" inputmode="numeric"
+               oninput="this.value=this.value.replace(/\D/g,'')"
+               value="{{ old('edad') }}" required>
 
         <input class="{{ $campo }}" type="text" name="matricula" placeholder="Matrícula (8 números)"
                maxlength="8" pattern="\d{8}" inputmode="numeric"
