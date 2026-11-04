@@ -1,4 +1,4 @@
-c8bckckimport { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { Link, useLocation } from "react-router-dom"
 import Img from "./Img"
 import "./inicio.css"
