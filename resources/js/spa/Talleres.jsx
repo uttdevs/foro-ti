@@ -73,7 +73,7 @@ const talleres = [
     clave: "analitica-predictiva",
     nombre: "Next-Gen Data: Analítica Predictiva y Machine Learning Cloud",
     categoria: "Datos", tipo: "datos", maestro: "daniel",
-    imagen: "/img/analitica-predictiva.svg",
+    imagen: "/img/analitica-predictiva.webp",
     descripcion: "Explora las últimas tendencias en analítica predictiva y machine learning en entornos cloud. Aprende a implementar soluciones avanzadas para el análisis de datos.",
   },
   {
@@ -129,7 +129,7 @@ const talleres = [
     clave: "modelado-3d",
     nombre: "Modelado e impresion 3D",
     categoria: "Hardware", tipo: "hardware", maestro: "gustavo",
-    imagen: "/img/modelado-3d.svg",
+    imagen: "/img/modelado-3d.webp",
     descripcion: "Aprende a modelar y imprimir objetos en 3D. Utiliza software de diseño y máquinas de impresión para crear prototipos y productos personalizados.",
   },
 ]
@@ -148,8 +148,8 @@ function Titulo() {
   return (
     <h1 className="talleres__h1">
       <span className="titulo-fx">
-        <img className="titulo-fx__img" src="/img/titulo.png" alt="Seleccionar taller" />
-        <img className="titulo-fx__glow" src="/img/titulo.png" alt="" aria-hidden="true" />
+        <img className="titulo-fx__img" src="/img/titulo.webp" alt="Seleccionar taller" fetchPriority="high" />
+        <img className="titulo-fx__glow" src="/img/titulo.webp" alt="" aria-hidden="true" />
       </span>
     </h1>
   )

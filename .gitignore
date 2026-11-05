@@ -31,6 +31,7 @@
 # Assets pesados (no pertenecen al repo)
 # ==============================
 /public/III Congreso
+/backup_originals
 
 # ==============================
 # Logs

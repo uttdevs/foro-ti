@@ -36,6 +36,7 @@ docker-compose.yml
 
 # Heavy/unnecessary assets
 public/III Congreso
+backup_originals
 
 # Dev files
 tests

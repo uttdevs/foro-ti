@@ -18,7 +18,7 @@
 
     <header class="flex items-center justify-between py-2">
         <a href="/" class="text-sm text-cyan-300 hover:text-fuchsia-300">← Volver al inicio</a>
-        <img src="/logo-foroti.png" alt="Foro TI 2026" class="h-16 w-auto object-contain"
+        <img src="/logo-foroti.webp" alt="Foro TI 2026" class="h-16 w-auto object-contain"
              onerror="this.style.display='none'">
     </header>
 

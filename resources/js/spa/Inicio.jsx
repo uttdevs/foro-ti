@@ -5,18 +5,18 @@ import "./inicio.css"
 
 /* Datos del evento */
 const galeria = [
-  { src: "/galeria-1.png", alt: "Foto de la galería 1", fallback: "💻", color: "from-indigo-950 to-purple-900" },
-  { src: "/galeria-2.png", alt: "Foto de la galería 2", fallback: "🎮", color: "from-fuchsia-900 to-violet-800" },
-  { src: "/galeria-3.png", alt: "Foto de la galería 3", fallback: "🤖", color: "from-blue-950 to-fuchsia-950" },
-  { src: "/galeria-4.png", alt: "Foto de la galería 4", fallback: "🧠", color: "from-purple-950 to-indigo-900" },
-  { src: "/galeria-5.png", alt: "Foto de la galería 5", fallback: "🏆", color: "from-cyan-950 to-violet-900" },
+  { src: "/galeria-1.webp", alt: "Foto de la galería 1", fallback: "💻", color: "from-indigo-950 to-purple-900" },
+  { src: "/galeria-2.webp", alt: "Foto de la galería 2", fallback: "🎮", color: "from-fuchsia-900 to-violet-800" },
+  { src: "/galeria-3.webp", alt: "Foto de la galería 3", fallback: "🤖", color: "from-blue-950 to-fuchsia-950" },
+  { src: "/galeria-4.webp", alt: "Foto de la galería 4", fallback: "🧠", color: "from-purple-950 to-indigo-900" },
+  { src: "/galeria-5.webp", alt: "Foto de la galería 5", fallback: "🏆", color: "from-cyan-950 to-violet-900" },
 ]
 
 /* Los enlaces que empiezan con "/" cambian de página; los que empiezan con "#" bajan a una sección */
 const informacion = [
-  { title: "Temáticas", link: "#tematicas", src: "/icono-ia.png", border: "border-violet-400", glow: "shadow-[0_0_14px_#22d3ee66]" },
-  { title: "Mapa del Evento", link: "#mapa", src: "/icono-mapa.png", border: "border-cyan-300", glow: "shadow-[0_0_14px_#67e8f966]" },
-  { title: "Agenda del Día", link: "/agenda", src: "/icono-agenda.png", border: "border-violet-400", glow: "shadow-[0_0_14px_#a78bfa66]" },
+  { title: "Temáticas", link: "#tematicas", src: "/icono-ia.webp", border: "border-violet-400", glow: "shadow-[0_0_14px_#22d3ee66]" },
+  { title: "Mapa del Evento", link: "#mapa", src: "/icono-mapa.webp", border: "border-cyan-300", glow: "shadow-[0_0_14px_#67e8f966]" },
+  { title: "Agenda del Día", link: "/agenda", src: "/icono-agenda.webp", border: "border-violet-400", glow: "shadow-[0_0_14px_#a78bfa66]" },
 ]
 
 const tematicas = [
@@ -28,7 +28,7 @@ const tematicas = [
 
 const conferencista = {
   nombre: "Dr. Eduardo Berra Villaseñor",
-  foto: "/ponente-eduardo.png",
+  foto: "",
   iniciales: "EB",
   tema: "IoT Cognitivo: Integración de Inteligencia Artificial Generativa en Sistemas Embebidos Inteligentes",
   fecha: "Jueves 26 de noviembre · 09:30 – 10:30",
@@ -36,14 +36,8 @@ const conferencista = {
 
 const juegos = []
 
-const patrocinadores = [
-  { nombre: "Patrocinador 1", src: "/patrocinador-1.png" },
-  { nombre: "Patrocinador 2", src: "/patrocinador-2.png" },
-  { nombre: "Patrocinador 3", src: "/patrocinador-3.png" },
-  { nombre: "Patrocinador 4", src: "/patrocinador-4.png" },
-  { nombre: "Patrocinador 5", src: "/patrocinador-5.png" },
-  { nombre: "Patrocinador 6", src: "/patrocinador-6.png" },
-]
+const patrocinadores = []
+
 
 /* Forma con esquinas cortadas (panel del objetivo) */
 const cortado =
@@ -156,6 +150,8 @@ function Conferencista({ c }) {
 }
 
 function Patrocinadores() {
+  if (!patrocinadores.length) return null
+
   /* Repite la lista hasta tener al menos 8 logos, para que la banda nunca quede vacía */
   const base = Array.from({ length: Math.ceil(8 / patrocinadores.length) }).flatMap(() => patrocinadores)
 
@@ -219,25 +215,29 @@ function Inicio() {
       <header className="mx-auto flex max-w-4xl items-center justify-between gap-3 py-4">
         <a href="#inicio" className="shrink-0">
           <Img
-            src="/logo-foroti.png"
+            src="/logo-foroti.webp"
             alt="Logo Foro TI 2026"
             fallbackClass="text-2xl font-black text-cyan-300"
             className="h-20 w-auto object-contain sm:h-28"
+            loading="eager"
+            fetchPriority="high"
           />
         </a>
 
         <div className="flex items-center gap-3 sm:gap-6">
           <Img
-            src="/logo-ia.png"
+            src="/logo-ia.webp"
             alt="Instituto de Investigación en Inteligencia Artificial"
             fallbackClass="text-sm font-bold text-slate-300"
             className="h-10 w-auto object-contain sm:h-14"
+            loading="eager"
           />
           <Img
-            src="/logo-segundo.png"
+            src="/logo-segundo.webp"
             alt="Ingeniería en Tecnologías de la Información e Innovación Digital"
             fallbackClass="text-sm font-bold text-slate-300"
             className="h-10 w-auto object-contain sm:h-14"
+            loading="eager"
           />
         </div>
       </header>
@@ -248,7 +248,7 @@ function Inicio() {
         className="mx-auto mt-2 flex min-h-56 max-w-4xl flex-col items-center justify-center rounded-2xl border-2 border-cyan-300 px-5 py-10 text-center shadow-[0_0_24px_#22d3ee88] sm:min-h-72"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(5,6,15,.35), rgba(5,6,15,.35)), url('/fondo_foro_ti_2026.png'), linear-gradient(135deg,#071b42,#21105a,#061b40)",
+            "linear-gradient(rgba(5,6,15,.35), rgba(5,6,15,.35)), url('/fondo_foro_ti_2026.webp'), linear-gradient(135deg,#071b42,#21105a,#061b40)",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -256,10 +256,12 @@ function Inicio() {
         <h1 className="text-4xl font-black tracking-wider sm:text-6xl">
           <span className="bg-gradient-to-r from-fuchsia-400 via-violet-400 to-cyan-300 bg-clip-text text-transparent">
             <Img
-              src="/Group 4.png"
+              src="/Group 4.webp"
               alt="Foro TI 2026"
               fallbackClass="text-2xl font-black text-cyan-300"
               className="h-20 w-auto object-contain sm:h-28"
+              loading="eager"
+              fetchPriority="high"
             />
           </span>
         </h1>
@@ -338,10 +340,11 @@ function Inicio() {
 
         <div className="relative flex flex-col items-center gap-3 sm:flex-row sm:gap-6">
           <Img
-            src="/Duo.png"
+            src="/Duo.webp"
             alt="FIFA x KOF"
             fallbackClass="text-5xl"
             className="torneo__logo h-16 w-auto shrink-0 object-contain drop-shadow-[0_0_14px_#fde047aa] sm:h-24"
+            loading="lazy"
           />
 
           <div className="flex-1 text-center">
@@ -435,25 +438,28 @@ function Inicio() {
       <footer className="mx-auto mt-12 max-w-4xl border-t border-cyan-500/40 py-6 text-center text-sm text-slate-400">
         <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10">
           <Img
-            src="/logotiposep.png"
+            src="/logotiposep.webp"
             alt="Logo SEP"
             fallback="SEP"
             fallbackClass="text-2xl font-black text-cyan-300"
             className="h-12 w-auto object-contain sm:h-16"
+            loading="lazy"
           />
           <Img
-            src="/Logoamorapuebla.png"
+            src="/Logoamorapuebla.webp"
             alt="Logo Por amor a Puebla, Pensar en grande"
             fallback="Amor a Puebla"
             fallbackClass="text-2xl font-black text-cyan-300"
             className="h-12 w-auto object-contain sm:h-16"
+            loading="lazy"
           />
           <Img
-            src="/utt.png"
+            src="/utt.webp"
             alt="Universidad Tecnológica de Tecamachalco"
             fallback="UTT"
             fallbackClass="text-2xl font-black text-cyan-300"
             className="h-12 w-auto object-contain sm:h-28"
+            loading="lazy"
           />
         </div>
 

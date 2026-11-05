@@ -5,9 +5,9 @@ import "./agenda.css"
 
 /* DATOS */
 const navegacion = [
-  { titulo: "Temáticas", to: "/#tematicas", src: "/icono-ia.png", fallback: "🧠", variante: "cian" },
-  { titulo: "Mapa del Evento", to: "/#mapa", src: "/icono-mapa.png", fallback: "📍", variante: "turquesa" },
-  { titulo: "Agenda del Día", to: "/agenda", src: "/icono-agenda.png", fallback: "📅", variante: "violeta", activo: true },
+  { titulo: "Temáticas", to: "/#tematicas", src: "/icono-ia.webp", fallback: "🧠", variante: "cian" },
+  { titulo: "Mapa del Evento", to: "/#mapa", src: "/icono-mapa.webp", fallback: "📍", variante: "turquesa" },
+  { titulo: "Agenda del Día", to: "/agenda", src: "/icono-agenda.webp", fallback: "📅", variante: "violeta", activo: true },
 ]
 
 const agendaJueves = [
