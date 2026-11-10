@@ -21,6 +21,7 @@ class ForoSeeder extends Seeder
             'Licenciatura en Contaduría',
             'Licenciatura en Administración',
             'Ingeniería en Datos e Inteligencia Artificial',
+            'Universidad Tecnológica Del Valle Del Mezquital',
         ];
 
         foreach ($carreras as $nombre) {

@@ -47,7 +47,7 @@ const MAESTROS = {
     puesto: "Jefe de sistemas y comunicaciones",
   },
   edgar: {
-    nombre: "Mtro. Edgar Bravo Romero",
+    nombre: "Mtro. Edgar Bravo Huerta",
     iniciales: "EB",
     empresa: "Universidad Tecnológica de Tecamachalco",
     puesto: "Profesor Asociado B",

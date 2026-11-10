@@ -12,10 +12,15 @@ Route::get('/agenda', fn () => view('spa'))->name('agenda');
 
 Route::get('/registro', [FormularioController::class, 'index'])->name('registro');
 Route::post('/registro-foro', [FormularioController::class, 'guardarForo'])->name('foro.guardar');
+Route::get('/registro-completado', fn () => view('registro-completado'))->name('registro.completado');
+
+Route::get('/inscribir-taller', [TallerController::class, 'buscarMatricula'])->name('taller.buscar');
+Route::post('/inscribir-taller', [TallerController::class, 'verificarMatricula'])->name('taller.verificar');
 
 Route::get('/talleres', [TallerController::class, 'index'])->name('talleres');
 Route::get('/talleres/datos', [TallerController::class, 'lista'])->name('talleres.datos');
 Route::post('/talleres/inscribir', [TallerController::class, 'inscribir'])->name('talleres.inscribir');
+
 // Login admin
 Route::get('/admin/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/admin/login', [AuthController::class, 'login'])
@@ -31,6 +36,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/foro/{asistente}/editar', [AdminController::class, 'foroEditar'])->name('admin.foro.edit');
     Route::put('/foro/{asistente}', [AdminController::class, 'foroActualizar'])->name('admin.foro.update');
     Route::delete('/foro/{asistente}', [AdminController::class, 'foroEliminar'])->name('admin.foro.destroy');
+    Route::patch('/foro/{asistente}/habilitado', [AdminController::class, 'toggleHabilitado'])->name('admin.foro.habilitado');
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });

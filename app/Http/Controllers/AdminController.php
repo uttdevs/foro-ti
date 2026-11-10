@@ -64,8 +64,21 @@ class AdminController extends Controller
 
     public function foroEliminar(AsistenteForo $asistente)
     {
-        $asistente->delete(); // su lugar en el taller se libera solo
+        $asistente->delete();
+
         return back()->with('ok', 'Registro eliminado.');
+    }
+
+    /**
+     * Activa o desactiva el acceso al taller de un asistente (pago presencial).
+     */
+    public function toggleHabilitado(AsistenteForo $asistente)
+    {
+        $asistente->update(['habilitado' => ! $asistente->habilitado]);
+
+        $estado = $asistente->habilitado ? 'habilitado' : 'deshabilitado';
+
+        return back()->with('ok', "Alumno {$estado}: {$asistente->nombre} {$asistente->apellido_paterno}.");
     }
 
     public function foroPdf(Request $request)
@@ -74,10 +87,14 @@ class AdminController extends Controller
             ->orderBy('apellido_paterno')->orderBy('apellido_materno')->get();
 
         $partes = [];
-        if ($request->filled('carrera_id'))   $partes[] = 'Carrera: ' . Carrera::find($request->carrera_id)?->nombre;
+        if ($request->filled('carrera_id'))   $partes[] = 'Carrera/Uni: ' . Carrera::find($request->carrera_id)?->nombre;
         if ($request->filled('cuatrimestre')) $partes[] = 'Cuatrimestre: ' . $request->cuatrimestre;
         if ($request->filled('taller_id'))    $partes[] = 'Taller: ' . ($request->taller_id === 'ninguno' ? 'Sin taller' : Taller::find($request->taller_id)?->nombre);
         if ($request->filled('buscar'))       $partes[] = 'Búsqueda: "' . $request->buscar . '"';
+        if ($request->has('habilitado') && $request->habilitado !== '') {
+            $partes[] = 'Pago: ' . ($request->habilitado === '1' ? 'Pagaron ✓' : 'No han pagado');
+        }
+
         $filtros = $partes ? implode(' | ', $partes) : 'Sin filtros (todos los registros)';
 
         return Pdf::loadView('admin.pdf.foro', compact('asistentes', 'filtros'))
@@ -100,6 +117,7 @@ class AdminController extends Controller
             ->when($r->filled('cuatrimestre'), fn ($q) => $q->where('cuatrimestre', $r->cuatrimestre))
             ->when($r->filled('taller_id'), fn ($q) => $r->taller_id === 'ninguno'
                 ? $q->whereNull('taller_id')
-                : $q->where('taller_id', $r->taller_id));
+                : $q->where('taller_id', $r->taller_id))
+            ->when($r->has('habilitado') && $r->habilitado !== '', fn ($q) => $q->where('habilitado', $r->habilitado === '1'));
     }
 }

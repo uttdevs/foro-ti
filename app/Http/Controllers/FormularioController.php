@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AsistenteForoRequest;
 use App\Models\Carrera;
+use App\Models\AsistenteForo;
 
 class FormularioController extends Controller
 {
@@ -16,13 +17,19 @@ class FormularioController extends Controller
 
     public function guardarForo(AsistenteForoRequest $request)
     {
-        // No se guarda en la BD todavía: se guarda al elegir taller
-        session(['pre_registro' => $request->validated()]);
+        $carrera = Carrera::find($request->carrera_id);
+        $esForaneo = $carrera && str_contains(strtolower($carrera->nombre), 'valle del mezquital');
 
-        if ($request->expectsJson()) {
-            return response()->json(['redirect' => route('talleres')]);
+        $asistente = AsistenteForo::create($request->validated() + [
+            'habilitado' => $esForaneo,
+        ]);
+
+        if ($esForaneo) {
+            session(['asistente_id' => $asistente->id]);
+
+            return redirect()->route('talleres');
         }
 
-        return redirect()->route('talleres');
+        return redirect()->route('registro.completado');
     }
 }

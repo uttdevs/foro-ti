@@ -25,8 +25,8 @@ class AdminSeeder extends Seeder
             }
         }
 
-        $correo = $correo ?: 'admin@foroti.com';
-        $clave  = $clave ?: 'CambiaEstaClave123';
+        $correo = $correo ?: 'admin@gmail.com';
+        $clave  = $clave ?: 'admin12345';
 
         User::updateOrCreate(
             ['email' => $correo],

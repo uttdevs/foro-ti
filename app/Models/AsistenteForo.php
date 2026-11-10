@@ -19,6 +19,11 @@ class AsistenteForo extends Model
         'taller_id',
         'correo',
         'telefono',
+        'habilitado',
+    ];
+
+    protected $casts = [
+        'habilitado' => 'boolean',
     ];
 
     public function carrera()

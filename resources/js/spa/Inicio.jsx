@@ -36,7 +36,10 @@ const conferencista = {
 
 const juegos = []
 
-const patrocinadores = []
+const patrocinadores = [
+  { nombre: "Patrocinador 1", src: "/img/patrocinador1.jpeg" },
+  { nombre: "Patrocinador 2", src: "/img/patrocinador2.png" },
+]
 
 
 /* Forma con esquinas cortadas (panel del objetivo) */
@@ -268,12 +271,20 @@ function Inicio() {
 
         <p className="mt-3 text-base font-semibold sm:text-xl">Datos, IA e Innovación Digital</p>
 
-        <a
-          href="/registro"
-          className="mt-5 rounded-full bg-gradient-to-r from-sky-400 to-blue-500 px-6 py-2 text-xs font-bold uppercase tracking-wide shadow-lg transition hover:scale-105 sm:text-sm"
-        >
-          Regístrate ahora
-        </a>
+        <div className="mt-5 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+          <a
+            href="/registro"
+            className="rounded-full bg-gradient-to-r from-sky-400 to-blue-500 px-6 py-2 text-xs font-bold uppercase tracking-wide shadow-lg transition hover:scale-105 sm:text-sm"
+          >
+            Regístrate ahora
+          </a>
+          <a
+            href="/inscribir-taller"
+            className="rounded-full border-2 border-cyan-400 px-6 py-2 text-xs font-bold uppercase tracking-wide text-cyan-300 transition hover:scale-105 hover:border-fuchsia-400 hover:text-fuchsia-300 sm:text-sm"
+          >
+            Ya pagué → Elegir taller
+          </a>
+        </div>
       </section>
 
       {/* Objetivo general */}

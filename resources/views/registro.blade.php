@@ -18,7 +18,7 @@
 
     <header class="flex items-center justify-between py-2">
         <a href="/" class="text-sm text-cyan-300 hover:text-fuchsia-300">← Volver al inicio</a>
-        <img src="/logo-foroti.webp" alt="Foro TI 2026" class="h-16 w-auto object-contain"
+        <img src="/logo-foroti.png" alt="Foro TI 2026" class="h-16 w-auto object-contain"
              onerror="this.style.display='none'">
     </header>
 
@@ -47,17 +47,18 @@
         <input class="{{ $campo }}" type="text" name="apellido_paterno" placeholder="Apellido paterno" value="{{ old('apellido_paterno') }}" required>
         <input class="{{ $campo }}" type="text" name="apellido_materno" placeholder="Apellido materno" value="{{ old('apellido_materno') }}" required>
         <input class="{{ $campo }}" type="text" name="edad" placeholder="Edad (2 dígitos)"
-               maxlength="2" pattern="(1[5-9]|[2-9]\d)" title="Escribe una edad de 15 a 99" inputmode="numeric"
-               oninput="this.value=this.value.replace(/\D/g,'')"
-               value="{{ old('edad') }}" required>
+       maxlength="2" pattern="(1[5-9]|[2-9]\d)" title="Escribe una edad de 15 a 99" inputmode="numeric"
+       oninput="this.value=this.value.replace(/\D/g,'')"
+       value="{{ old('edad') }}" required>
 
+       
         <input class="{{ $campo }}" type="text" name="matricula" placeholder="Matrícula (8 números)"
                maxlength="8" pattern="\d{8}" inputmode="numeric"
                oninput="this.value=this.value.replace(/\D/g,'')"
                value="{{ old('matricula') }}" required>
 
         <select class="{{ $campo }}" name="carrera_id" required>
-            <option value="">Selecciona tu carrera</option>
+            <option value="">Selecciona tu carrera o universidad</option>
             @foreach ($carreras as $carrera)
                 <option value="{{ $carrera->id }}" @selected(old('carrera_id') == $carrera->id)>{{ $carrera->nombre }}</option>
             @endforeach

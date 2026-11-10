@@ -39,6 +39,7 @@ CREATE TABLE `asistentes_foro` (
   `taller_id` bigint(20) UNSIGNED DEFAULT NULL,
   `correo` varchar(100) NOT NULL,
   `telefono` varchar(15) DEFAULT NULL,
+  `habilitado` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -94,7 +95,8 @@ INSERT INTO `carreras` (`id`, `nombre`, `created_at`, `updated_at`) VALUES
 (7, 'Licenciatura en Negocios y Mercadotecnia', NULL, NULL),
 (8, 'Licenciatura en Contaduría', NULL, NULL),
 (9, 'Licenciatura en Administración', NULL, NULL),
-(10, 'Ingeniería en Datos e Inteligencia Artificial', '2026-10-14 18:42:40', '2026-10-14 18:42:40');
+(10, 'Ingeniería en Datos e Inteligencia Artificial', '2026-10-14 18:42:40', '2026-10-14 18:42:40'),
+(11, 'Universidad Tecnológica Del Valle Del Mezquital', '2026-11-09 00:00:00', '2026-11-09 00:00:00');
 
 -- --------------------------------------------------------
 

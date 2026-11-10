@@ -9,6 +9,8 @@
         table { width: 100%; border-collapse: collapse; }
         th, td { border: 1px solid #999; padding: 3px; text-align: left; }
         th { background: #1d4ed8; color: #fff; }
+        .pagado { color: #16a34a; font-weight: bold; }
+        .no-pagado { color: #dc2626; }
     </style>
 </head>
 <body>
@@ -20,8 +22,8 @@
     <table>
         <thead>
             <tr>
-                <th>#</th><th>Nombre</th><th>Edad</th><th>Matrícula</th><th>Carrera</th>
-                <th>Cuatri</th><th>Taller</th><th>Correo</th><th>Teléfono</th>
+                <th>#</th><th>Nombre</th><th>Edad</th><th>Matrícula</th><th>Carrera / Universidad</th>
+                <th>Cuatri</th><th>Taller</th><th>Pagó</th><th>Correo</th><th>Teléfono</th>
             </tr>
         </thead>
         <tbody>
@@ -34,6 +36,9 @@
                 <td>{{ $a->carrera->nombre }}</td>
                 <td>{{ $a->cuatrimestre }}</td>
                 <td>{{ $a->taller?->nombre ?? 'Sin taller' }}</td>
+                <td class="{{ $a->habilitado ? 'pagado' : 'no-pagado' }}">
+                    {{ $a->habilitado ? '✓ Sí' : '✗ No' }}
+                </td>
                 <td>{{ $a->correo }}</td>
                 <td>{{ $a->telefono }}</td>
             </tr>

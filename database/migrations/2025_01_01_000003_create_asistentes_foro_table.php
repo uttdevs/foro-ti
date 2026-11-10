@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('taller_id')->nullable()->constrained('talleres')->nullOnDelete();
             $table->string('correo', 100)->unique();
             $table->string('telefono', 10)->nullable();
+            $table->boolean('habilitado')->default(false);
             $table->timestamps();
         });
     }
