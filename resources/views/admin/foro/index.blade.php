@@ -41,7 +41,67 @@
     </div>
 </form>
 
-<div class="overflow-x-auto">
+{{-- Vista Móvil (Tarjetas para celular) --}}
+<div class="block md:hidden space-y-3">
+    @forelse ($asistentes as $a)
+        <div class="bg-slate-800 border border-slate-700 rounded-lg p-4 space-y-3 shadow-sm">
+            <div class="flex items-start justify-between gap-2">
+                <div>
+                    <h3 class="font-bold text-white text-base">
+                        {{ $a->apellido_paterno }} {{ $a->apellido_materno }} {{ $a->nombre }}
+                    </h3>
+                    <p class="text-xs text-blue-400 font-mono mt-0.5">
+                        Matrícula: <strong class="text-white">{{ $a->matricula }}</strong> · {{ $a->edad }} años
+                    </p>
+                </div>
+
+                {{-- Toggle habilitado --}}
+                <div class="flex flex-col items-center">
+                    <span class="text-[10px] uppercase font-bold text-slate-400 mb-1">
+                        {{ $a->habilitado ? 'Pagó' : 'No pagó' }}
+                    </span>
+                    <form method="POST" action="{{ route('admin.foro.habilitado', $a) }}">
+                        @csrf @method('PATCH')
+                        <button type="submit"
+                                title="{{ $a->habilitado ? 'Quitar acceso al taller' : 'Dar acceso al taller' }}"
+                                class="relative inline-flex h-7 w-12 shrink-0 items-center rounded-full transition-colors focus:outline-none {{ $a->habilitado ? 'bg-green-500' : 'bg-slate-600' }}">
+                            <span class="inline-block h-5 w-5 transform rounded-full bg-white shadow transition-transform {{ $a->habilitado ? 'translate-x-6' : 'translate-x-1' }}"></span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="bg-slate-900/60 p-2.5 rounded text-xs space-y-1 text-slate-300">
+                <p><strong>Uni/Carrera:</strong> {{ $a->carrera->nombre }} (C-{{ $a->cuatrimestre }})</p>
+                <p>
+                    <strong>Taller:</strong> 
+                    @if ($a->taller)
+                        <span class="text-green-400 font-semibold">{{ $a->taller->nombre }}</span>
+                    @else
+                        <span class="text-yellow-400">Sin taller aún</span>
+                    @endif
+                </p>
+                <p class="text-[11px] text-slate-400 truncate">📧 {{ $a->correo }} · 📞 {{ $a->telefono ?? 'S/N' }}</p>
+            </div>
+
+            <div class="flex items-center justify-between pt-1 border-t border-slate-700/60 text-xs">
+                <span class="text-slate-400 text-[11px]">{{ $a->created_at?->format('d/m H:i') }}</span>
+                <div class="flex gap-2">
+                    <a href="{{ route('admin.foro.edit', $a) }}" class="bg-blue-600 px-3 py-1 rounded text-white font-medium">Editar</a>
+                    <form method="POST" action="{{ route('admin.foro.destroy', $a) }}" onsubmit="return confirm('¿Eliminar este registro?')">
+                        @csrf @method('DELETE')
+                        <button class="bg-red-600/80 px-2.5 py-1 rounded text-white">Eliminar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    @empty
+        <div class="p-6 text-center text-slate-400 bg-slate-800 rounded">No hay registros con esos filtros.</div>
+    @endforelse
+</div>
+
+{{-- Vista Desktop (Tabla clásica) --}}
+<div class="hidden md:block overflow-x-auto">
     <table class="w-full text-sm bg-slate-800 rounded">
         <thead class="bg-blue-700 text-left">
             <tr>
