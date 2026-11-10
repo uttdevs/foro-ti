@@ -215,31 +215,34 @@ function Inicio() {
       }}
     >
       {/* Encabezado */}
-      <header className="mx-auto flex max-w-4xl items-center justify-between gap-3 py-4">
-        <a href="#inicio" className="shrink-0">
+      <header className="mx-auto flex w-full max-w-4xl items-center justify-between gap-3 px-3 py-4 sm:px-6">
+        <a href="#inicio" className="w-[35%] shrink-0 sm:w-auto">
           <Img
             src="/logo-foroti.webp"
             alt="Logo Foro TI 2026"
+            fallback="FORO TI 2026"
             fallbackClass="text-2xl font-black text-cyan-300"
-            className="h-20 w-auto object-contain sm:h-28"
+            className="h-12 w-full object-contain object-left sm:h-28 sm:w-auto"
             loading="eager"
             fetchPriority="high"
           />
         </a>
 
-        <div className="flex items-center gap-3 sm:gap-6">
+        <div className="flex w-[60%] flex-row items-center justify-end gap-2 sm:w-auto sm:gap-6">
           <Img
             src="/logo-ia.webp"
             alt="Instituto de Investigación en Inteligencia Artificial"
+            fallback="IIA"
             fallbackClass="text-sm font-bold text-slate-300"
-            className="h-10 w-auto object-contain sm:h-14"
+            className="h-8 w-auto object-contain sm:h-20"
             loading="eager"
           />
           <Img
             src="/logo-segundo.webp"
             alt="Ingeniería en Tecnologías de la Información e Innovación Digital"
+            fallback="ITIID"
             fallbackClass="text-sm font-bold text-slate-300"
-            className="h-10 w-auto object-contain sm:h-14"
+            className="h-8 w-auto object-contain sm:h-20"
             loading="eager"
           />
         </div>
