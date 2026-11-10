@@ -28,7 +28,7 @@ const tematicas = [
 
 const conferencista = {
   nombre: "Dr. Eduardo Berra Villaseñor",
-  foto: "",
+  foto: "/img/dr.eduardo berra.jpeg",
   iniciales: "EB",
   tema: "IoT Cognitivo: Integración de Inteligencia Artificial Generativa en Sistemas Embebidos Inteligentes",
   fecha: "Jueves 26 de noviembre · 09:30 – 10:30",
