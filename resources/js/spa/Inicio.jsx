@@ -34,6 +34,122 @@ const conferencista = {
   fecha: "Jueves 26 de noviembre · 09:30 – 10:30",
 }
 
+/* Maestros de talleres */
+const MAESTROS = {
+  josue: {
+    nombre: "Ing. Josué Isaac Reyes Pérez",
+    iniciales: "JI",
+    empresa: "Grupo Salinas · Seguros Azteca",
+    puesto: "Líder técnico en área de desarrollo",
+  },
+  uriel: {
+    nombre: "Ing. José Uriel Rodríguez Ramírez",
+    iniciales: "JU",
+    empresa: "Softtek",
+    puesto: "App Support Engineer Sr.",
+  },
+  antonio: {
+    nombre: "Ing. Antonio Tobías Huerta",
+    iniciales: "AT",
+    empresa: "Sistemas Digitales de Vanguardia (Vía Digital)",
+    puesto: "Líder de desarrollo y gestión del departamento de TI",
+  },
+  enrique: {
+    nombre: "Ing. Enrique Peláez García",
+    iniciales: "EP",
+    empresa: "Santander México",
+    puesto: "Developer Full Stack en el área de Biométricos",
+  },
+  victor: {
+    nombre: "Ing. Víctor Aldair Garmendia",
+    iniciales: "VG",
+    empresa: "Datality",
+    puesto: "CEO",
+  },
+  julio: {
+    nombre: "Ing. Julio César Rendón Corte",
+    iniciales: "JC",
+    empresa: "Universidad de Los Ángeles",
+    puesto: "Jefe de sistemas y comunicaciones",
+  },
+  edgar: {
+    nombre: "Mtro. Edgar Bravo Huerta",
+    iniciales: "EB",
+    empresa: "Universidad Tecnológica de Tecamachalco",
+    puesto: "Profesor Asociado B",
+  },
+  daniel: {
+    nombre: "Mtro. Daniel Esau Villagran Cruz",
+    iniciales: "DE",
+    empresa: "Sayux soluciones",
+    puesto: "Technical Project Manager",
+  },
+  gustavo: {
+    nombre: "Gustavo Andrade Angel",
+    iniciales: "GA",
+    empresa: "FinanSys",
+    puesto: "Desarrollador de software",
+  },
+}
+
+/* Talleres informativos */
+const talleresInfo = [
+  {
+    clave: "analitica-predictiva",
+    nombre: "Next-Gen Data: Analítica Predictiva y Machine Learning Cloud",
+    categoria: "Datos", tipo: "datos", maestro: "daniel",
+    descripcion: "Explora las últimas tendencias en analítica predictiva y machine learning en entornos cloud. Aprende a implementar soluciones avanzadas para el análisis de datos.",
+  },
+  {
+    clave: "laptops",
+    nombre: "Mantenimiento y reparación de Laptops",
+    categoria: "Hardware", tipo: "hardware", maestro: "edgar",
+    descripcion: "Aprende a identificar fallas, realizar mantenimiento preventivo y reparar componentes de laptops. Practica técnicas de diagnóstico, limpieza y solución de problemas de hardware.",
+  },
+  {
+    clave: "base-datos",
+    nombre: "Bases de Datos en Entornos Empresariales",
+    categoria: "Datos", tipo: "datos", maestro: "antonio",
+    descripcion: "Diseña y administra bases de datos para empresas. Aprende a organizar información, realizar consultas SQL y gestionar datos de manera eficiente y segura.",
+  },
+  {
+    clave: "nube-local",
+    nombre: "Creación y Gestión de Nube Local",
+    categoria: "Redes", tipo: "redes", maestro: "uriel",
+    descripcion: "Crea y configura una nube local para almacenar, compartir y gestionar archivos entre dispositivos. Aprende a administrar usuarios, permisos y recursos sin depender de servicios externos.",
+  },
+  {
+    clave: "chatbots",
+    nombre: "Creación de Chatbots y asistentes virtuales",
+    categoria: "IA", tipo: "ia", maestro: "enrique",
+    descripcion: "Crea chatbots y asistentes virtuales capaces de responder preguntas y automatizar tareas. Aprende a diseñar conversaciones e integrar herramientas de inteligencia artificial.",
+  },
+  {
+    clave: "spring-boot",
+    nombre: "Creación de Microservicios Spring Boot",
+    categoria: "Desarrollo", tipo: "desarrollo", maestro: "josue",
+    descripcion: "Desarrolla aplicaciones modulares con Spring Boot. Aprende a crear, configurar y conectar microservicios para construir sistemas eficientes y escalables.",
+  },
+  {
+    clave: "mikrotik",
+    nombre: "Despliegue de redes MikroTik con apoyo de IA",
+    categoria: "Redes", tipo: "redes", maestro: "julio",
+    descripcion: "Configura y despliega redes con equipos MikroTik utilizando herramientas de inteligencia artificial. Aprende a administrar routers, configurar conexiones y optimizar el rendimiento y la seguridad de la red.",
+  },
+  {
+    clave: "ia",
+    nombre: "Inteligencia Artificial (IA)",
+    categoria: "Datos", tipo: "datos", maestro: "victor",
+    descripcion: "Explora las aplicaciones de la inteligencia artificial. Aprende a utilizar herramientas inteligentes para generar contenido, resolver problemas y automatizar tareas.",
+  },
+  {
+    clave: "modelado-3d",
+    nombre: "Modelado e impresion 3D",
+    categoria: "Hardware", tipo: "hardware", maestro: "gustavo",
+    descripcion: "Aprende a modelar y imprimir objetos en 3D. Utiliza software de diseño y máquinas de impresión para crear prototipos y productos personalizados.",
+  },
+]
+
 const juegos = []
 
 const patrocinadores = [
@@ -287,6 +403,12 @@ function Inicio() {
           >
             Ya pagué → Elegir taller
           </a>
+          <a
+            href="#talleres-info"
+            className="rounded-full border border-violet-400 bg-violet-950/40 px-6 py-2 text-xs font-bold uppercase tracking-wide text-violet-200 transition hover:scale-105 hover:bg-violet-600 hover:text-white sm:text-sm"
+          >
+            Ver talleres
+          </a>
         </div>
       </section>
 
@@ -410,6 +532,67 @@ function Inicio() {
               <div className="mt-4 h-1 w-12 rounded-full bg-gradient-to-r from-cyan-400 to-fuchsia-500 transition-all duration-300 group-hover:w-full" />
             </article>
           ))}
+        </div>
+      </section>
+
+      {/* Talleres informativos */}
+      <section id="talleres-info" className="mx-auto mt-14 max-w-4xl scroll-mt-6">
+        <div className="text-center">
+          <h2 className="text-2xl font-black sm:text-4xl">
+            <span className="bg-gradient-to-r from-cyan-300 via-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
+              Talleres Disponibles
+            </span>
+          </h2>
+          <p className="mt-2 text-sm text-slate-300 sm:text-base">
+            Conoce los 9 talleres prácticos impartidos por expertos de la industria.
+          </p>
+        </div>
+
+        <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {talleresInfo.map((t) => {
+            const maestro = MAESTROS[t.maestro]
+            return (
+              <article
+                key={t.clave}
+                className="group flex flex-col justify-between rounded-2xl border border-cyan-400/40 bg-gradient-to-br from-[#102735] to-[#11102b] p-5 shadow-[0_0_15px_rgba(34,211,238,0.1)] transition-all duration-300 hover:-translate-y-1.5 hover:border-fuchsia-400 hover:shadow-[0_0_20px_rgba(217,70,239,0.3)]"
+              >
+                <div>
+                  <div className="flex items-center justify-between">
+                    <span className="rounded-full border border-cyan-400/50 bg-cyan-400/10 px-3 py-0.5 text-xs font-bold uppercase tracking-wider text-cyan-300">
+                      {t.categoria}
+                    </span>
+                  </div>
+
+                  <h3 className="mt-3 text-base font-extrabold leading-snug text-white group-hover:text-cyan-200">
+                    {t.nombre}
+                  </h3>
+
+                  <p className="mt-2.5 text-xs leading-relaxed text-slate-300">
+                    {t.descripcion}
+                  </p>
+                </div>
+
+                <div className="mt-5 flex items-center gap-3 border-t border-cyan-400/20 pt-3.5">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-cyan-400 to-fuchsia-500 text-xs font-black text-slate-950 shadow">
+                    {maestro.iniciales}
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-xs font-bold text-white">{maestro.nombre}</p>
+                    <p className="truncate text-[11px] text-slate-400">{maestro.empresa}</p>
+                  </div>
+                </div>
+              </article>
+            )
+          })}
+        </div>
+
+        <div className="mt-8 text-center">
+          <a
+            href="/inscribir-taller"
+            className="inline-block rounded-full bg-gradient-to-r from-sky-400 to-blue-500 px-7 py-3 text-xs font-black uppercase tracking-wider text-slate-950 shadow-lg transition hover:scale-105 hover:from-cyan-300 hover:to-fuchsia-400 sm:text-sm"
+          >
+            ¿Ya pagaste? Inscríbete a tu taller aquí →
+          </a>
         </div>
       </section>
 
