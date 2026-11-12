@@ -17,18 +17,9 @@ class FormularioController extends Controller
 
     public function guardarForo(AsistenteForoRequest $request)
     {
-        $carrera = Carrera::find($request->carrera_id);
-        $esForaneo = $carrera && str_contains(strtolower($carrera->nombre), 'valle del mezquital');
-
-        $asistente = AsistenteForo::create($request->validated() + [
-            'habilitado' => $esForaneo,
+        AsistenteForo::create($request->validated() + [
+            'habilitado' => false,
         ]);
-
-        if ($esForaneo) {
-            session(['asistente_id' => $asistente->id]);
-
-            return redirect()->route('talleres');
-        }
 
         return redirect()->route('registro.completado');
     }
