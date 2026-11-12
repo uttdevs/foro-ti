@@ -31,8 +31,18 @@
             cuando lo hagas, el equipo te habilitará y podrás elegir tu taller.
         </p>
 
-        <div class="mt-6 rounded-xl border border-cyan-400/30 bg-cyan-400/10 px-4 py-3 text-cyan-200 text-xs leading-6">
-            💡 Guarda tu <strong>matrícula</strong>, la necesitarás para inscribirte al taller después de pagar.
+        @if (session('matricula_registrada'))
+            <div class="mt-5 rounded-xl border border-cyan-400/50 bg-[#0c2032] p-4 text-center shadow-[0_0_15px_rgba(34,211,238,0.2)]">
+                <p class="text-xs uppercase font-bold tracking-wider text-slate-400">Tu clave de acceso para talleres:</p>
+                <p class="mt-1 font-mono text-3xl font-black tracking-widest text-cyan-300">
+                    {{ session('matricula_registrada') }}
+                </p>
+                <p class="mt-1 text-[11px] text-slate-400">Guárdala o tómale captura de pantalla 📸</p>
+            </div>
+        @endif
+
+        <div class="mt-5 rounded-xl border border-cyan-400/30 bg-cyan-400/10 px-4 py-3 text-cyan-200 text-xs leading-6">
+            💡 Con esta clave podrás elegir tu taller en el botón de abajo una vez que hayas pagado y el equipo te habilite.
         </div>
 
         <a href="{{ route('taller.buscar') }}"

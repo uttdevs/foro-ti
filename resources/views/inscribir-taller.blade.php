@@ -23,7 +23,7 @@
             Inscripción al taller
         </h1>
         <p class="mt-2 text-center text-sm text-slate-300">
-            Paso 2 de 2 · Ingresa tu matrícula para continuar
+            Paso 2 de 2 · Ingresa tu matrícula o identificador para continuar
         </p>
 
         @if ($errors->any())
@@ -46,7 +46,7 @@
 
             <input type="text"
                    name="matricula"
-                   placeholder="Matrícula (8 números)"
+                   placeholder="Matrícula o identificador (8 números)"
                    maxlength="8"
                    pattern="\d{8}"
                    inputmode="numeric"

@@ -20,8 +20,9 @@
     <select name="cuatrimestre" class="{{ $in }}">
         <option value="">Todos los cuatrimestres</option>
         @foreach ([1, 4, 7, 10] as $cuatri)
-            <option value="{{ $cuatri }}" @selected(request('cuatrimestre') == $cuatri)>Cuatrimestre {{ $cuatri }}</option>
+            <option value="{{ $cuatri }}" @selected(request('cuatrimestre') == (string)$cuatri)>Cuatrimestre {{ $cuatri }}</option>
         @endforeach
+        <option value="0" @selected(request('cuatrimestre') === '0')>N/A (Externos)</option>
     </select>
     <select name="taller_id" class="{{ $in }}">
         <option value="">Todos los talleres</option>
@@ -72,7 +73,7 @@
             </div>
 
             <div class="bg-slate-900/60 p-2.5 rounded text-xs space-y-1 text-slate-300">
-                <p><strong>Uni/Carrera:</strong> {{ $a->carrera->nombre }} (C-{{ $a->cuatrimestre }})</p>
+                <p><strong>Uni/Carrera:</strong> {{ $a->carrera->nombre }} ({{ $a->cuatrimestre == 0 ? 'N/A' : 'C-'.$a->cuatrimestre }})</p>
                 <p>
                     <strong>Taller:</strong> 
                     @if ($a->taller)
@@ -118,7 +119,7 @@
                 <td class="p-2">{{ $a->edad }}</td>
                 <td class="p-2">{{ $a->matricula }}</td>
                 <td class="p-2">{{ $a->carrera->nombre }}</td>
-                <td class="p-2">{{ $a->cuatrimestre }}</td>
+                <td class="p-2">{{ $a->cuatrimestre == 0 ? 'N/A' : $a->cuatrimestre }}</td>
                 <td class="p-2">
                     @if ($a->taller)
                         {{ $a->taller->nombre }}

@@ -34,7 +34,7 @@
                 <td>{{ $a->edad }}</td>
                 <td>{{ $a->matricula }}</td>
                 <td>{{ $a->carrera->nombre }}</td>
-                <td>{{ $a->cuatrimestre }}</td>
+                <td>{{ $a->cuatrimestre == 0 ? 'N/A' : $a->cuatrimestre }}</td>
                 <td>{{ $a->taller?->nombre ?? 'Sin taller' }}</td>
                 <td class="{{ $a->habilitado ? 'pagado' : 'no-pagado' }}">
                     {{ $a->habilitado ? '✓ Sí' : '✗ No' }}

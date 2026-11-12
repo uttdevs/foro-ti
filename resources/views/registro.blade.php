@@ -52,23 +52,24 @@
        value="{{ old('edad') }}" required>
 
        
-        <input class="{{ $campo }}" type="text" name="matricula" placeholder="Matrícula (8 números)"
+        <input class="{{ $campo }}" type="text" id="campo-matricula" name="matricula" placeholder="Matrícula o Identificador (8 números)"
                maxlength="8" pattern="\d{8}" inputmode="numeric"
                oninput="this.value=this.value.replace(/\D/g,'')"
                value="{{ old('matricula') }}" required>
 
-        <select class="{{ $campo }}" name="carrera_id" required>
-            <option value="">Selecciona tu carrera o universidad</option>
+        <select class="{{ $campo }}" id="select-carrera" name="carrera_id" required>
+            <option value="">Selecciona carrera / universidad o público externo</option>
             @foreach ($carreras as $carrera)
                 <option value="{{ $carrera->id }}" @selected(old('carrera_id') == $carrera->id)>{{ $carrera->nombre }}</option>
             @endforeach
         </select>
 
-        <select class="{{ $campo }}" name="cuatrimestre" required>
+        <select class="{{ $campo }}" id="select-cuatri" name="cuatrimestre" required>
             <option value="">Cuatrimestre</option>
             @foreach ([1, 4, 7, 10] as $cuatri)
                 <option value="{{ $cuatri }}" @selected(old('cuatrimestre') == $cuatri)>{{ $cuatri }}</option>
             @endforeach
+            <option value="0" @selected(old('cuatrimestre') === '0' || old('cuatrimestre') === 0)>N/A (Público externo)</option>
         </select>
 
         <input class="{{ $campo }}" type="email" name="correo" placeholder="Correo (con @)" value="{{ old('correo') }}" required>
@@ -80,9 +81,28 @@
 
         <button type="submit"
                 class="w-full rounded-lg bg-cyan-400 px-6 py-3 font-black text-slate-950 transition hover:bg-fuchsia-400">
-            Continuar y elegir taller →
+            Continuar →
         </button>
     </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const selectCarrera = document.getElementById('select-carrera');
+            const selectCuatri = document.getElementById('select-cuatri');
+            const campoMatricula = document.getElementById('campo-matricula');
+
+            selectCarrera?.addEventListener('change', function () {
+                const texto = this.options[this.selectedIndex]?.text.toLowerCase() || '';
+                if (texto.includes('externo') || texto.includes('público') || texto.includes('publico')) {
+                    selectCuatri.value = '0';
+                    campoMatricula.placeholder = 'Identificador (8 números, ej. últimos 8 de tu cel)';
+                } else {
+                    if (selectCuatri.value === '0') selectCuatri.value = '';
+                    campoMatricula.placeholder = 'Matrícula (8 números)';
+                }
+            });
+        });
+    </script>
 
     <p class="mt-6 text-center text-xs text-slate-400">© 2026 Foro TI · Datos, IA e innovación digital</p>
 </div>

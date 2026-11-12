@@ -17,10 +17,10 @@ class FormularioController extends Controller
 
     public function guardarForo(AsistenteForoRequest $request)
     {
-        AsistenteForo::create($request->validated() + [
+        $asistente = AsistenteForo::create($request->validated() + [
             'habilitado' => false,
         ]);
 
-        return redirect()->route('registro.completado');
+        return redirect()->route('registro.completado')->with('matricula_registrada', $asistente->matricula);
     }
 }

@@ -88,7 +88,7 @@ class AdminController extends Controller
 
         $partes = [];
         if ($request->filled('carrera_id'))   $partes[] = 'Carrera/Uni: ' . Carrera::find($request->carrera_id)?->nombre;
-        if ($request->filled('cuatrimestre')) $partes[] = 'Cuatrimestre: ' . $request->cuatrimestre;
+        if ($request->filled('cuatrimestre')) $partes[] = 'Cuatrimestre: ' . ($request->cuatrimestre === '0' ? 'N/A (Externos)' : $request->cuatrimestre);
         if ($request->filled('taller_id'))    $partes[] = 'Taller: ' . ($request->taller_id === 'ninguno' ? 'Sin taller' : Taller::find($request->taller_id)?->nombre);
         if ($request->filled('buscar'))       $partes[] = 'Búsqueda: "' . $request->buscar . '"';
         if ($request->has('habilitado') && $request->habilitado !== '') {

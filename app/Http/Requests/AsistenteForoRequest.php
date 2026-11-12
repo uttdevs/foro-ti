@@ -31,7 +31,7 @@ class AsistenteForoRequest extends FormRequest
             'edad'             => ['required', 'integer', 'digits:2', 'min:15', 'max:99'],
             'matricula'        => ['required', 'digits:8', Rule::unique('asistentes_foro', 'matricula')->ignore($asistente)],
             'carrera_id'       => ['required', 'exists:carreras,id'],
-            'cuatrimestre'     => ['required', Rule::in([1, 4, 7, 10])],
+            'cuatrimestre'     => ['required', Rule::in([0, 1, 4, 7, 10])],
             'correo'           => ['required', 'email:rfc', 'max:100', Rule::unique('asistentes_foro', 'correo')->ignore($asistente)],
             'telefono'         => ['nullable', 'digits:10'],
         ];
@@ -48,12 +48,12 @@ class AsistenteForoRequest extends FormRequest
     {
         return [
             'required'          => 'El campo :attribute es obligatorio.',
-            'matricula.digits'  => 'La matrícula debe tener exactamente 8 números.',
-            'matricula.unique'  => 'Esta matrícula ya está registrada en el Foro.',
+            'matricula.digits'  => 'La matrícula o número identificador debe tener exactamente 8 números.',
+            'matricula.unique'  => 'Esta matrícula o identificador ya está registrada en el Foro.',
             'correo.email'      => 'El correo debe ser válido y llevar @ (ej. nombre@correo.com).',
             'correo.unique'     => 'Este correo ya está registrado en el Foro.',
             'telefono.digits'   => 'El teléfono debe tener exactamente 10 números.',
-            'cuatrimestre.in'   => 'Selecciona un cuatrimestre válido (1, 4, 7 o 10).',
+            'cuatrimestre.in'   => 'Selecciona un cuatrimestre válido (1, 4, 7, 10 o N/A para externos).',
             'carrera_id.exists' => 'Selecciona una carrera válida.',
             'taller_id.exists'  => 'Selecciona un taller válido.',
             'edad.integer'      => 'La edad debe ser un número.',
