@@ -11,7 +11,9 @@ Route::get('/', fn () => view('spa'))->name('inicio');
 Route::get('/agenda', fn () => view('spa'))->name('agenda');
 
 Route::get('/registro', [FormularioController::class, 'index'])->name('registro');
-Route::post('/registro-foro', [FormularioController::class, 'guardarForo'])->name('foro.guardar');
+Route::post('/registro-foro', [FormularioController::class, 'guardarForo'])
+    ->middleware('throttle:registro-dispositivo')
+    ->name('foro.guardar');
 Route::get('/registro-completado', fn () => view('registro-completado'))->name('registro.completado');
 
 Route::get('/inscribir-taller', [TallerController::class, 'buscarMatricula'])->name('taller.buscar');

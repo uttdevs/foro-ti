@@ -4,6 +4,7 @@
    Los lugares disponibles vienen de la base de datos.
    ========================================================= */
 import { useCallback, useEffect, useState } from "react"
+import ModalMateriales from "./ModalMateriales"
 import "./talleres.css"
 
 // Tipos de etiqueta: hardware, datos, redes, ia, seguridad, sistemas, desarrollo
@@ -156,7 +157,7 @@ function Titulo() {
 }
 
 /* Una tarjeta */
-function Tarjeta({ taller, lugares, ocupado, onInscribir }) {
+function Tarjeta({ taller, lugares, ocupado, onInscribir, onVerMateriales }) {
   const cargando = lugares === undefined
   const e = estadoDe(lugares ?? 0)
   const agotado = !cargando && e.agotado
@@ -190,6 +191,16 @@ function Tarjeta({ taller, lugares, ocupado, onInscribir }) {
         </span>
       </div>
 
+      {taller.clave === "laptops" && (
+        <button
+          type="button"
+          onClick={onVerMateriales}
+          className="mb-2.5 inline-flex w-full items-center justify-center gap-1.5 rounded-lg border border-amber-400/40 bg-amber-500/10 py-1.5 text-xs font-bold text-amber-300 transition hover:bg-amber-500/20"
+        >
+          📦 Ver lista de materiales requeridos
+        </button>
+      )}
+
       <button
         className="taller__boton"
         type="button"
@@ -208,6 +219,7 @@ function Talleres() {
   const [aviso, setAviso] = useState(null)   // { texto, tipo }
   const [enviando, setEnviando] = useState(false)
   const [exito, setExito] = useState(null)   // { taller, lugares }
+  const [modalMateriales, setModalMateriales] = useState(false)
 
   const aplicar = useCallback((lista) => {
     const mapa = {}
@@ -244,7 +256,11 @@ function Talleres() {
     const info = datos?.[taller.clave]
     if (!info || enviando) return
 
-    if (!window.confirm(`¿Confirmas tu inscripción en "${taller.nombre}"?\nNo podrás cambiarla después.`)) return
+    const mensajeConfirm = taller.clave === "laptops"
+      ? `¿Confirmas tu inscripción en "${taller.nombre}"?\n\n⚠️ RECUERDA: Debes traer tu lista de materiales necesarios. El funcionamiento del equipo queda a responsabilidad del alumno.\n\nNo podrás cambiar de taller después.`
+      : `¿Confirmas tu inscripción en "${taller.nombre}"?\nNo podrás cambiarla después.`
+
+    if (!window.confirm(mensajeConfirm)) return
 
     setEnviando(true)
     setAviso(null)
@@ -324,9 +340,15 @@ function Talleres() {
             lugares={datos?.[taller.clave]?.lugares}
             ocupado={enviando}
             onInscribir={alInscribirse}
+            onVerMateriales={() => setModalMateriales(true)}
           />
         ))}
       </div>
+
+      <ModalMateriales
+        abierto={modalMateriales}
+        alCerrar={() => setModalMateriales(false)}
+      />
     </>
   )
 }

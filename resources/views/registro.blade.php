@@ -79,6 +79,20 @@
                oninput="this.value=this.value.replace(/\D/g,'')"
                value="{{ old('telefono') }}">
 
+        {{-- Monitoreo de seguridad discreto --}}
+        <div class="rounded-lg border border-cyan-500/20 bg-slate-950/40 px-3 py-2 text-[11px] text-slate-400">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-1.5 truncate">
+                    <span class="inline-block h-2 w-2 animate-pulse rounded-full bg-emerald-400"></span>
+                    <span>IP: <strong class="font-mono text-cyan-300">{{ request()->ip() }}</strong> · Monitoreado</span>
+                </div>
+                <span class="text-[10px] font-semibold text-slate-500">Seguridad</span>
+            </div>
+            <p class="mt-1 text-[10px] leading-tight text-slate-500">
+                Cualquier registro falso o suplantación será bloqueado de la red y reportado.
+            </p>
+        </div>
+
         <button type="submit"
                 class="w-full rounded-lg bg-cyan-400 px-6 py-3 font-black text-slate-950 transition hover:bg-fuchsia-400">
             Continuar →

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link, useLocation } from "react-router-dom"
 import Img from "./Img"
+import ModalMateriales from "./ModalMateriales"
 import "./inicio.css"
 
 /* Datos del evento */
@@ -155,6 +156,7 @@ const juegos = []
 const patrocinadores = [
   { nombre: "Patrocinador 1", src: "/img/patrocinador1.jpeg" },
   { nombre: "Patrocinador 2", src: "/img/patrocinador2.png" },
+  { nombre: "Patrocinador 3", src: "/img/patrocinador3.jpeg" },
 ]
 
 
@@ -312,6 +314,7 @@ function Patrocinadores() {
 /* PÁGINA */
 function Inicio() {
   const { hash } = useLocation()
+  const [modalMateriales, setModalMateriales] = useState(false)
 
   /* Al llegar desde otra página, baja hasta la sección del enlace (#mapa, #tematicas...) */
   useEffect(() => {
@@ -570,6 +573,16 @@ function Inicio() {
                   <p className="mt-2.5 text-xs leading-relaxed text-slate-300">
                     {t.descripcion}
                   </p>
+
+                  {t.clave === "laptops" && (
+                    <button
+                      type="button"
+                      onClick={() => setModalMateriales(true)}
+                      className="mt-3 inline-flex items-center gap-1.5 rounded-lg border border-amber-400/50 bg-amber-500/10 px-3 py-1.5 text-xs font-bold text-amber-300 transition hover:bg-amber-500/20"
+                    >
+                      📦 Ver lista de materiales requeridos
+                    </button>
+                  )}
                 </div>
 
                 <div className="mt-5 flex items-center gap-3 border-t border-cyan-400/20 pt-3.5">
@@ -673,6 +686,11 @@ function Inicio() {
         </p>
         <p className="mt-4">© 2026 Foro TI · Datos, IA e Innovación Digital</p>
       </footer>
+
+      <ModalMateriales
+        abierto={modalMateriales}
+        alCerrar={() => setModalMateriales(false)}
+      />
     </main>
   )
 }
