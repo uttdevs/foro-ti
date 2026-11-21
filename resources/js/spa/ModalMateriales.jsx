@@ -57,7 +57,16 @@ export default function ModalMateriales({ abierto, alCerrar }) {
           ))}
         </ul>
 
-        <div className="mt-4 rounded-xl border border-amber-400/40 bg-amber-500/10 p-3 text-xs text-amber-200">
+        <div className="mt-4 rounded-xl border border-cyan-400/40 bg-cyan-500/10 p-3 text-xs text-cyan-200">
+          <p className="font-bold flex items-center gap-1.5 text-cyan-300">
+            <span>💡</span> Recomendación / Tip:
+          </p>
+          <p className="mt-1 text-cyan-100/90 leading-relaxed">
+            Pueden organizarse en equipos para compartir y que no les cueste conseguir el material.
+          </p>
+        </div>
+
+        <div className="mt-3 rounded-xl border border-amber-400/40 bg-amber-500/10 p-3 text-xs text-amber-200">
           <p className="font-bold flex items-center gap-1.5 text-amber-300">
             <span>⚠️</span> Nota importante:
           </p>

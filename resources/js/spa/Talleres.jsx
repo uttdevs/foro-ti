@@ -257,7 +257,7 @@ function Talleres() {
     if (!info || enviando) return
 
     const mensajeConfirm = taller.clave === "laptops"
-      ? `¿Confirmas tu inscripción en "${taller.nombre}"?\n\n⚠️ RECUERDA: Debes traer tu lista de materiales necesarios. El funcionamiento del equipo queda a responsabilidad del alumno.\n\nNo podrás cambiar de taller después.`
+      ? `¿Confirmas tu inscripción en "${taller.nombre}"?\n\n💡 TIP: Pueden organizarse en equipos para que no les cueste conseguir el material.\n\n⚠️ RECUERDA: Debes traer tu lista de materiales y el funcionamiento del equipo queda a responsabilidad del alumno.\n\nNo podrás cambiar de taller después.`
       : `¿Confirmas tu inscripción en "${taller.nombre}"?\nNo podrás cambiarla después.`
 
     if (!window.confirm(mensajeConfirm)) return
@@ -301,12 +301,29 @@ function Talleres() {
 
   /* Pantalla final */
   if (exito) {
+    const esLaptops = exito.taller?.toLowerCase().includes("laptop")
+
     return (
       <div id="talleres">
         <section className="exito">
           <h2 className="exito__titulo">¡Registro completado!</h2>
           <p>Quedaste inscrito en el taller:</p>
           <p className="exito__taller">{exito.taller}</p>
+
+          {esLaptops && (
+            <div className="mx-auto my-5 max-w-md rounded-2xl border border-cyan-400/40 bg-slate-900/90 p-4 text-left shadow-lg">
+              <p className="flex items-center gap-1.5 text-xs font-bold text-cyan-300 sm:text-sm">
+                <span>💡</span> Recomendación / Tip:
+              </p>
+              <p className="mt-1 text-xs leading-relaxed text-slate-200">
+                Pueden organizarse en equipos para que no les cueste conseguir el material.
+              </p>
+              <p className="mt-2 text-[11px] leading-relaxed text-amber-300">
+                ⚠️ Recuerda traer tus herramientas y que el funcionamiento del equipo queda bajo tu responsabilidad.
+              </p>
+            </div>
+          )}
+
           <p className="exito__nota">Nos vemos en el Foro TI 2026.</p>
           <a className="taller__boton exito__boton" href="/">Volver al inicio</a>
         </section>
